@@ -8,5 +8,6 @@ ref.ref("Books/" + bookId).set({
 
 
 ref.ref("Books/" + bookId).once("value").then(snapshot => {
+    console.log(typeof(snapshot));
     console.log(snapshot.val().Name);
 })
