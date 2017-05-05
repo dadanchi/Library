@@ -11,5 +11,8 @@ System.config({
         //'cryptojs': 'node_modules/crypto-js/sha1.js',
         //'toastr': 'node_modules/toastr/toastr.js',
         'bootstrap': 'node_modules/bootstrap/dist/js/bootstrap.min.js',
+
+        // App files
+        'homeController': 'js/Controllers/homeController.js',
     }
 });
