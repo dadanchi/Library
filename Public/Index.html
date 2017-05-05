@@ -2,14 +2,28 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>My Library</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDjPeNER8gKmuvaSHocL6JXSYT6gWMqwR4",
+            authDomain: "library-94284.firebaseapp.com",
+            databaseURL: "https://library-94284.firebaseio.com",
+            projectId: "library-94284",
+            storageBucket: "library-94284.appspot.com",
+            messagingSenderId: "8412375293"
+        };
+        firebase.initializeApp(config);
+    </script>
 
+    <script src="js/main.js"></script>
 </body>
 
 </html>
