@@ -1,12 +1,12 @@
 const userController = (() => {
 
-    const getNextId = (function() {
-    let counter = 0;
-    return function() {
-        counter += 1;
-        return counter;
-    };
-})();
+    const getNextId = (function () {
+        let counter = 0;
+        return function () {
+            counter += 1;
+            return counter;
+        };
+    })();
 
     class UserController {
 
@@ -30,19 +30,24 @@ const userController = (() => {
 
             let dbReference = firebase.database();
             let username = $('#username-input').val();
-             let password = $('#password-input').val();
+            let password = $('#password-input').val();
 
-             let userReference = dbReference.ref('Library/Users');
-             let newUserReference = userReference.push();
-             let key = userReference.push().key;
+            let userReference = dbReference.ref('Library/Users');
+            let newUserReference = userReference.push();
+            let key = userReference.push().key;
 
-             newUserReference.set({
-                 password: password,
-                 username : username,
-                 key : key
-             });
+            newUserReference.set({
+                password: password,
+                username: username,
+                key: key
+            });
+
+            
+
+            notifier.successfullRegistrationMsg('You have registered successfully!');
 
         }
+
 
 
     }
