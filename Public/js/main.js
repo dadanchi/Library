@@ -21,12 +21,9 @@ var router = new Navigo(root, useHash, hash);
 
 router.on('/signup', signUp);
 
-
 firebase.database().ref("Library/Users/" + 0).once("value").then(snapshot => {
     console.log(snapshot.val().username);
-})
-
-
+});
 
 const getNextId = (function () {
 		let counter = 0;
