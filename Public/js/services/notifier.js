@@ -5,6 +5,10 @@ const notifier = (() => {
         successfullRegistrationMsg(message){
             toastr.success(message, 'Thank you!', { timeOut: 2000 });
         }
+
+         error(message){
+            toastr.error(message, {timeOut: 2000});
+        }
     }
 
     let notifier = new Notifier();

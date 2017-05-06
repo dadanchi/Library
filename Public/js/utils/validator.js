@@ -16,21 +16,34 @@ const validator = (() => {
 
         isValidUserName(username) {
             if (username.length < MIN_NAME_SYMBOLS || username.length > MAX_SYMBOLS) {
-                throw Error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
+                //throw Error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
+                notifier.error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
+                location.hash = '#auth';
+                return;
             }
 
             if (username.match(VALID_SYMBOLS)) {
-                throw Error("Username can consist only of Capital and small letters");
+                //throw Error("Username can consist only of Capital and small letters");
+                notifier.error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
+                location.hash = '#auth';
+                return;
             }
         }
 
         isValidPassword(password) {
+            let answer = false;
             if (password.length < MIN_PASSWORD_SYMBOLS) {
-                throw Error(`Password must have atleast ${MIN_PASSWORD_SYMBOLS} symbols`);
+                //throw Error(`Password must have atleast ${MIN_PASSWORD_SYMBOLS} symbols`);
+                //notifier.error('Invalid password : must be at least six characters');
+                //location.hash = '#auth';
+                 return answer;
             }
 
             if (password.length > MAX_SYMBOLS) {
-                throw Error(`Password cannot exceed  ${MAX_SYMBOLS} symbols`);
+                //throw Error(`Password cannot exceed  ${MAX_SYMBOLS} symbols`);
+                //notifier.error('Invalid password : must be at least six characters');
+                //location.hash = '#auth';
+                return answer;
             }
         }
 
@@ -39,11 +52,12 @@ const validator = (() => {
                 let result = false;
                 snapshot.forEach(u => {
                     if (u.val().username === username) {
-                        console.log("here");
+                        console.log("hereNot");
                         result = true;
                     }
                 });
-                console.log("here");
+                console.log("hereTaken");
+                location.hash = '#auth';
                 return result;
             });
         }
