@@ -17,7 +17,7 @@ const userController = (() => {
         }
 
         signUp() {
-            
+
             // let dbReference = firebase.database();
             // let username = $('#username-input').val();
             // let password = $('#password-input').val();
@@ -34,10 +34,12 @@ const userController = (() => {
 
              let userReference = dbReference.ref('Library/Users');
              let newUserReference = userReference.push();
+             let key = userReference.push().key;
 
              newUserReference.set({
                  password: password,
-                 username : username
+                 username : username,
+                 key : key
              });
 
         }
