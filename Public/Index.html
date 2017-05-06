@@ -37,9 +37,16 @@
 </head>
 
 <body>
+  <header>
+    <input id = 'username-input' placeholder="username">
+    <label for="username-input">Username</label>
+    <input id = 'password-input' type = 'password' placeholder="password">
+    <label for="password-input">Password</label>
+    <a href="#/signup" class="btn btn-success">Sign up</a>
+  </header>
 
   <h1>Welcome to the Library</h1>
-  <div id = 'app-container'></div>
+  <div id='app-container'></div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -52,19 +59,18 @@
     });
   </script>
 
-<!--Libraries-->
-  <!--<script src='../node_modules/navigo/lib/navigo.js'></script>-->
-  <!--<script src='./lib/script/navigo.js'></script>
+  <!--Libraries-->
+  <script src='./lib/script/navigo.js'></script>
   <script src='./lib/script/jquery.js'></script>
-  <script src='./lib/script/handlebars.js'></script>  -->
+  <script src='./lib/script/handlebars.js'></script>
 
-  <script src = './lib/script/systemjs/dist/system.js'></script>
-  <script src = './js/system-config.js'></script>
+  <!--<script src = './lib/script/systemjs/dist/system.js'></script>
+  <script src = './js/system-config.js'></script>-->
 
   <!--Application files-->
 
 
-<!--Application init-->
+  <!--Application init-->
   <script src='./js/main.js'></script>
 
 </body>
