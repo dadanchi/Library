@@ -39,12 +39,12 @@ const userController = (() => {
                 let newUserReference = userReference.push();
 
                 let key = userReference.push().key;
-
+                console.log(newUser.books);
                 newUserReference.set({
                     password: newUser.passHash,
                     username: newUser.username,
                     key: key,
-                    books: newUser.books,
+                    books: [""],
                 });
 
                 notifier.successfullRegistrationMsg('You have registered successfully!');

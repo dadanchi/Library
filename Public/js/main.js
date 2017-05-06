@@ -11,10 +11,10 @@ router.on({
     })
     .resolve();
 
-// ----------------------- HOW TO FOREACH USERS -----------------
+//----------------------- HOW TO FOREACH USERS -----------------
 // firebase.database().ref("Library/Users/").once("value").then(snapshot => {
 //     snapshot.forEach(u => {
-//         console.log(u.val().username);
+//         console.log(u.val().books);
 //     })
 // });
 
