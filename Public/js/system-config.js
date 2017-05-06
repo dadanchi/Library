@@ -2,17 +2,22 @@ System.config({
     transpiler: 'plugin-babel',
     map: {
         // System.js files
-        'plugin-babel': '../node_modules/systemjs-plugin-babel/plugin-babel.js',
-        'systemjs-babel-build': '../node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
+        'plugin-babel': '../../node_modules/systemjs-plugin-babel/plugin-babel.js',
+        'systemjs-babel-build': '../../node_modules/systemjs-plugin-babel/systemjs-babel-browser.js',
+        'text': '../../node_modules/systemjs-plugin-text/text.js',
 
         // Library files
-        'jquery': '../node_modules/jquery/dist/jquery.min.js',
-        'handlebars': '../node_modules/handlebars/dist/handlebars.amd.js',
+        'jquery': '../../node_modules/jquery/dist/jquery.min.js',
+        'handlebars': '../../node_modules/handlebars/dist/handlebars.amd.js',
         //'cryptojs': 'node_modules/crypto-js/sha1.js',
         //'toastr': 'node_modules/toastr/toastr.js',
-        'bootstrap': '../node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'bootstrap': '../../node_modules/bootstrap/dist/js/bootstrap.min.js',
 
         // App files
+        'main': './main.js',
         'homeController': './Controllers/homeController.js',
+        'func': './func.js',
     }
 });
+
+System.import('main');
