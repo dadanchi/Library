@@ -16,7 +16,6 @@ System.config({
         // App files
         'main': './main.js',
         'homeController': './Controllers/homeController.js',
-        'func': './func.js',
     }
 });
 
