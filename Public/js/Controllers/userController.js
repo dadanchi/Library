@@ -17,15 +17,28 @@ const userController = (() => {
         }
 
         signUp() {
+            
+            // let dbReference = firebase.database();
+            // let username = $('#username-input').val();
+            // let password = $('#password-input').val();
+            // let userId = getNextId();
+
+            // dbReference.ref('Library/Users/' + 4).set({
+            //     password: password,
+            //     username: username
+            // });
+
             let dbReference = firebase.database();
             let username = $('#username-input').val();
-            let password = $('#password-input').val();
-            let userId = getNextId();
+             let password = $('#password-input').val();
 
-            dbReference.ref('Library/Users/' + userId).set({
-                password: password,
-                username: username
-            });
+             let userReference = dbReference.ref('Library/Users');
+             let newUserReference = userReference.push();
+
+             newUserReference.set({
+                 password: password,
+                 username : username
+             });
 
         }
 

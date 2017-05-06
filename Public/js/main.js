@@ -7,7 +7,7 @@ var router = new Navigo(root, useHash, hash);
 router.on({
     "home": homeController.load,
     "auth": userController.load,
-    '/signup': userController.signUp,
+    "signup": userController.signUp,
 })
 .resolve();
 
