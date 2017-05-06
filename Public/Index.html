@@ -10,7 +10,19 @@
     <link href="../node_modules/bootstrap/dist/css/bootstrap.css">
 
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-    <script src="../firebase-config.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDjPeNER8gKmuvaSHocL6JXSYT6gWMqwR4",
+            authDomain: "library-94284.firebaseapp.com",
+            databaseURL: "https://library-94284.firebaseio.com",
+            projectId: "library-94284",
+            storageBucket: "library-94284.appspot.com",
+            messagingSenderId: "8412375293"
+        };
+
+        firebase.initializeApp(config);
+    </script>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/3.9.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
@@ -36,15 +48,17 @@
     <div id="app-container"></div>
 
     <!--Libraries-->
-    <script src='./lib/script/navigo.js'></script>
-    <script src='./lib/script/jquery.js'></script>
-    <script src='./lib/script/handlebars.js'></script>
+    <script src="./lib/script/navigo.js"></script>
+    <script src="./lib/script/jquery.js"></script>
+    <script src="./lib/script/handlebars.js"></script>
 
     <!--Application files-->
+    <script src="js/templates.js"></script>
+    <script src="js/Controllers/homeController.js"></script>
     <script src="js/Controllers/userController.js"></script>
 
     <!--Application init-->
-    <script src='./js/main.js'></script>
+    <script src="./js/main.js"></script>
 
 </body>
 
