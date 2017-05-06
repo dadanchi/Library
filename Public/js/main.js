@@ -2,25 +2,16 @@ var root = null;
 var useHash = true; // Defaults to: false
 var hash = '#!'; // Defaults to: '#'
 
-
-
 var router = new Navigo(root, useHash, hash);
 
-router.on('home', homeController.load);
-router.on('/signup', userController.signUp);
+router.on("home", homeController.load)
+    .on("auth", userController.load)
+    .on('/signup', userController.signUp);
 
 
-
-
-
-
-
-
-
-
-firebase.database().ref("Library/Users/" + 0).once("value").then(snapshot => {
-    console.log(snapshot.val().username);
-});
+// firebase.database().ref("Library/Users/" + 0).once("value").then(snapshot => {
+//     console.log(snapshot.val().username);
+// });
 
 const getNextId = (function() {
     let counter = 0;
@@ -29,3 +20,5 @@ const getNextId = (function() {
         return counter;
     };
 })();
+
+window.onload = () => location.hash = "/home";

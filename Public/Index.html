@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Library</title>
 
-    <link href="css/style.css" rel="stylesheet">
-    <link href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
     <script>
@@ -37,20 +37,21 @@
 
 <body>
     <header>
-        <input id="username-input" placeholder="username">
-        <label for="username-input">Username</label>
-        <input id="password-input" type="password" placeholder="password">
-        <label for="password-input">Password</label>
-        <a href="#/signup" class="btn btn-success">Sign up</a>
+        <nav class="navbar navbar-default">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home">Home</a></li>
+            </ul>
+            <a href="#/auth" id="auth-btn" class="btn btn-success">Sign Up/Register</a>
+        </nav>
     </header>
 
-    <h1>Welcome to the Library</h1>
     <div id="app-container"></div>
 
     <!--Libraries-->
     <script src="./lib/script/navigo.js"></script>
     <script src="./lib/script/jquery.js"></script>
     <script src="./lib/script/handlebars.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!--Application files-->
     <script src="js/templates.js"></script>
