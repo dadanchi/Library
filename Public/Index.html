@@ -2,77 +2,49 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Library</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Library</title>
 
-  <link href="css/style.css" rel="stylesheet">
-  <link href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.css">
 
-  <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDjPeNER8gKmuvaSHocL6JXSYT6gWMqwR4",
-      authDomain: "library-94284.firebaseapp.com",
-      databaseURL: "https://library-94284.firebaseio.com",
-      projectId: "library-94284",
-      storageBucket: "library-94284.appspot.com",
-      messagingSenderId: "8412375293"
-    };
-    firebase.initializeApp(config);
-  </script>
-
-
-  <!-- update the version number as needed -->
-  <script defer src="/__/firebase/3.9.0/firebase-app.js"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/3.9.0/firebase-auth.js"></script>
-  <script defer src="/__/firebase/3.9.0/firebase-database.js"></script>
-  <script defer src="/__/firebase/3.9.0/firebase-messaging.js"></script>
-  <script defer src="/__/firebase/3.9.0/firebase-storage.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script src="../firebase-config.js"></script>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/3.9.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/3.9.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/3.9.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/3.9.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/3.9.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
 
 </head>
 
 <body>
-  <header>
-    <input id = 'username-input' placeholder="username">
-    <label for="username-input">Username</label>
-    <input id = 'password-input' type = 'password' placeholder="password">
-    <label for="password-input">Password</label>
-    <a href="#/signup" class="btn btn-success">Sign up</a>
-  </header>
+    <header>
+        <input id='username-input' placeholder="username">
+        <label for="username-input">Username</label>
+        <input id="password-input" type='password' placeholder="password">
+        <label for="password-input">Password</label>
+        <a href="#/signup" class="btn btn-success">Sign up</a>
+    </header>
 
-  <h1>Welcome to the Library</h1>
-  <div id='app-container'></div>
+    <h1>Welcome to the Library</h1>
+    <div id="app-container"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // // The Firebase SDK is initialized and available here!
-      //
-      // firebase.auth().onAuthStateChanged(user => { });
-      // firebase.database().ref('/path/to/ref').on('data', snapshot => { });
-      // firebase.messaging().requestPermission().then(() => { });
-      // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-    });
-  </script>
+    <!--Libraries-->
+    <script src='./lib/script/navigo.js'></script>
+    <script src='./lib/script/jquery.js'></script>
+    <script src='./lib/script/handlebars.js'></script>
 
-  <!--Libraries-->
-  <script src='./lib/script/navigo.js'></script>
-  <script src='./lib/script/jquery.js'></script>
-  <script src='./lib/script/handlebars.js'></script>
+    <!--Application files-->
+    <script src="js/Controllers/userController.js"></script>
 
-  <!--<script src = './lib/script/systemjs/dist/system.js'></script>
-  <script src = './js/system-config.js'></script>-->
-
-  <!--Application files-->
-  <script src = 'js/Controllers/userController.js'></script>
-
-
-  <!--Application init-->
-  <script src='./js/main.js'></script>
+    <!--Application init-->
+    <script src='./js/main.js'></script>
 
 </body>
 
