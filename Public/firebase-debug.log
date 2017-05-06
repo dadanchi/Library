@@ -3,24 +3,24 @@
 [debug] CLI Version:  3.7.0
 [debug] Platform:     win32
 [debug] Node Version: v7.10.0
-[debug] Time:         Sat May 06 2017 11:56:26 GMT+0300 (FLE Daylight Time)
+[debug] Time:         Sat May 06 2017 14:22:45 GMT+0300 (FLE Daylight Time)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
 [debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/library-94284  
- Sat May 06 2017 11:56:26 GMT+0300 (FLE Daylight Time)
+ Sat May 06 2017 14:22:45 GMT+0300 (FLE Daylight Time)
 [debug] <<< HTTP RESPONSE 200
 [debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/library-94284/tokens  
- Sat May 06 2017 11:56:27 GMT+0300 (FLE Daylight Time)
+ Sat May 06 2017 14:22:46 GMT+0300 (FLE Daylight Time)
 [debug] <<< HTTP RESPONSE 200
 [info] Starting Firebase development server...
 [info] 
 [info] Project Directory: H:\Lazar\TeamProject\Library
 [debug] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/library-94284  
- Sat May 06 2017 11:56:27 GMT+0300 (FLE Daylight Time)
+ Sat May 06 2017 14:22:47 GMT+0300 (FLE Daylight Time)
 [debug] <<< HTTP RESPONSE 200
 [debug] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/8412375293/clients/_:getWebAppConfig  
- Sat May 06 2017 11:56:28 GMT+0300 (FLE Daylight Time)
+ Sat May 06 2017 14:22:48 GMT+0300 (FLE Daylight Time)
 [debug] <<< HTTP RESPONSE 200
 [info] Public Directory: public
 [info] 

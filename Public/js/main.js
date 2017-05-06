@@ -17,6 +17,7 @@ router.on('/signup', userController.signUp);
 
 
 
+
 firebase.database().ref("Library/Users/" + 0).once("value").then(snapshot => {
     console.log(snapshot.val().username);
 });
