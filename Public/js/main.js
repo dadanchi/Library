@@ -4,9 +4,12 @@ var hash = '#!'; // Defaults to: '#'
 
 var router = new Navigo(root, useHash, hash);
 
-router.on("home", homeController.load)
-    .on("auth", userController.load)
-    .on('/signup', userController.signUp);
+router.on({
+    "home": homeController.load,
+    "auth": userController.load,
+    '/signup': userController.signUp,
+})
+.resolve();
 
 
 // firebase.database().ref("Library/Users/" + 0).once("value").then(snapshot => {

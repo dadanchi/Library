@@ -10,8 +10,6 @@ const userController = (() => {
 
     class UserController {
 
-        
-
         load() {
             loadTemplate("signUp").then(template => {
                 $("#app-container").html(template);
