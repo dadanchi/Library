@@ -3,7 +3,7 @@ const notifier = (() => {
     class Notifier{
 
         successfullRegistrationMsg(message){
-            toastr.success(message, 'Thank you!', { timeOut: 5000 });
+            toastr.success(message, 'Thank you!', { timeOut: 2000 });
         }
     }
 

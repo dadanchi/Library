@@ -16,6 +16,10 @@ const userController = (() => {
             })
         }
 
+        loggenIn(){
+
+        }
+
         signUp() {
 
             // let dbReference = firebase.database();
@@ -41,15 +45,9 @@ const userController = (() => {
                 username: username,
                 key: key
             });
-
-            
-
             notifier.successfullRegistrationMsg('You have registered successfully!');
-
+            setTimeout(() => homeController.loadRegedUserView(), 2500);
         }
-
-
-
     }
 
     let usrCntrl = new UserController();
