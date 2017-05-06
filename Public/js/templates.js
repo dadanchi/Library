@@ -1,18 +1,17 @@
-function load(templateName) {
+function loadTemplate(templateName) {
     const cacheObj = {};
 
-    return new Promise((reslove, reject) => {
+    return new Promise((resolve, reject) => {
         if (cacheObj.hasOwnProperty(templateName)) {
 
             resolve(cacheObj[templateName]);
+        } else {
+            $.get(`../templates/${templateName}.handlebars`, templateHtml => {
+                var template = Handlebars.compile(templateHtml);
+                cacheObj[name] = template;
+                resolve(template);
+            });
+
         }
     })
-
-
-    return getRequest(`js/templates/${templateName}.handlebars`)
-        .then(template => {
-            const compiledTemplate = Handlebars.compile(template);
-            cacheObj[templateName] = compiledTemplate;
-            return Promise.resolve(compiledTemplate);
-        });
 }

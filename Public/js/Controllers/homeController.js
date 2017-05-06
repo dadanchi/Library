@@ -1,14 +1,12 @@
 const homeController = (() => {
-
     class HomeController {
-
         load() {
-            let dbReference = firebase.database();
-
-
+            loadTemplate("home").then(template => {
+                $("#app-container").html(template);
+            })
         };
     }
+    let homeController = new HomeController();
 
-    let usrCntrl = new UserController();
-    return usrCntrl;
+    return homeController;
 })();
