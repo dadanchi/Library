@@ -1,8 +1,8 @@
 const userController = (() => {
 
-    const getNextId = (function () {
+    const getNextId = (function() {
         let counter = 0;
-        return function () {
+        return function() {
             counter += 1;
             return counter;
         };
@@ -16,37 +16,40 @@ const userController = (() => {
             })
         }
 
-        loggenIn(){
-
-        }
-
         signUp() {
-
-            // let dbReference = firebase.database();
-            // let username = $('#username-input').val();
-            // let password = $('#password-input').val();
-            // let userId = getNextId();
-
-            // dbReference.ref('Library/Users/' + 4).set({
-            //     password: password,
-            //     username: username
-            // });
 
             let dbReference = firebase.database();
             let username = $('#username-input').val();
             let password = $('#password-input').val();
 
-            let userReference = dbReference.ref('Library/Users');
-            let newUserReference = userReference.push();
-            let key = userReference.push().key;
+            let newUser = new User(username, password);
 
-            newUserReference.set({
-                password: password,
-                username: username,
-                key: key
+            // Check if username is taken, then continue
+            let result = validator.usernameIsTaken(username).then((resp) => {
+                console.log(resp);
+                if (resp) {
+
+                    // TODO -> use toastr 
+                    alert("Username is taken");
+                    location.hash = "#/auth";
+                    return;
+                }
+
+                let userReference = dbReference.ref('Library/Users');
+                let newUserReference = userReference.push();
+
+                let key = userReference.push().key;
+
+                newUserReference.set({
+                    password: newUser.passHash,
+                    username: newUser.username,
+                    key: key,
+                    books: newUser.books,
+                });
+
+                notifier.successfullRegistrationMsg('You have registered successfully!');
+                setTimeout(() => homeController.loadRegedUserView(), 2500);
             });
-            notifier.successfullRegistrationMsg('You have registered successfully!');
-            setTimeout(() => homeController.loadRegedUserView(), 2500);
         }
     }
 
