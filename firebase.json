@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "publi/index.html",
+    "public": "Publi/index.html",
     "rewrites": [
       {
         "source": "**",
