@@ -1,6 +1,16 @@
 const userController = (() => {
 
+    const getNextId = (function() {
+    let counter = 0;
+    return function() {
+        counter += 1;
+        return counter;
+    };
+})();
+
     class UserController {
+
+        
 
         load() {
             loadTemplate("signUp").then(template => {

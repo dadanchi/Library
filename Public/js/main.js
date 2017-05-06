@@ -13,12 +13,6 @@ router.on("home", homeController.load)
 //     console.log(snapshot.val().username);
 // });
 
-const getNextId = (function() {
-    let counter = 0;
-    return function() {
-        counter += 1;
-        return counter;
-    };
-})();
+
 
 window.onload = () => location.hash = "/home";
