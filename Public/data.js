@@ -2,8 +2,10 @@ const data = (() => {
     class Data {
         getBooks() {
             return firebase.database().ref("Library/Books").once("value").then(snapshot => {
-                return snapshot.val();
-            })
+                let books = snapshot.val();
+
+                return books;
+            });
         }
 
         getOneBook(id) {
@@ -40,6 +42,12 @@ const data = (() => {
                     resultCategories[currentIndex].books.push(b);
                 });
 
+                this.sortByName(resultCategories);
+
+                for (let i in resultCategories) {
+                    this.sortByName(resultCategories[i].books);
+                }
+
                 return resultCategories;
             });
         }
@@ -51,6 +59,21 @@ const data = (() => {
                         return categories[i];
                     }
                 }
+            });
+        }
+
+        sortByName(array) {
+            return array.sort((a, b) => {
+                let name1 = a.name.replace(/\s+/g, '').toLowerCase();
+                let name2 = b.name.replace(/\s+/g, '').toLowerCase();
+
+                if (name1 > name2) {
+                    return 1;
+                } else if (name1 > name2) {
+                    return -1;
+                }
+
+                return 0;
             });
         }
     };
