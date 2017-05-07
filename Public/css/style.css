@@ -12,3 +12,17 @@
     width: 100px;
     height: 150px;
 }
+
+.book-img-zoom {
+    width: 200px;
+    height: 300px;
+}
+
+.book-div {
+    width: 400px;
+    margin-left: 40px;
+}
+
+.author-text-zoom {
+    float: right;
+}

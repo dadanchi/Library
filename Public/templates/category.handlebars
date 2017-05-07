@@ -1,0 +1,10 @@
+<h1> All Books from {{name}}</h1>
+    <ul class="category-books">
+        {{#each books}}                   
+            <div class="book-div">
+                <li><a href="#/books/:{{id}}"><h2>{{name}}</h2></a></li>
+                <h3>Author: {{author}}</h3>
+                <img src="{{img}}" alt="Book Cover" class="book-img">
+            </div>   
+        {{/each}}
+    </ul>

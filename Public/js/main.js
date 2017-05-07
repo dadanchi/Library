@@ -5,19 +5,20 @@ var hash = '#!'; // Defaults to: '#'
 var router = new Navigo(root, useHash, hash);
 
 router.on({
-    "home": homeController.load,
-    "books/allCategories": allCategoriesController.load,
-    "books/Category#1": categoryOneController.load,
-    "books/Category#2": categoryTwoController.load,
-    "books/Category#3": categoryThreeController.load,
-    "about": aboutController.load,
-    "contacts": contactsController.load,
-    "auth": userController.load,
-    "signup": userController.signUp,
-    "logout": userController.logout,
-})
+        "home": homeController.load,
+        "books/allCategories": allCategoriesController.load,
+        "books/categories/:name": categoryController.load,
+        "books/:id": bookController.load,
+        "about": aboutController.load,
+        "contacts": contactsController.load,
+        "auth": userController.load,
+        "signup": userController.signUp,
+        "logout": userController.logout,
+    })
     .resolve();
 
+// load the categories before start
+homeController.loadCategoryDropDownMenu();
 
 //----------------------- HOW TO FOREACH USERS -----------------
 // firebase.database().ref("Library/Users/").once("value").then(snapshot => {

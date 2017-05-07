@@ -5,12 +5,12 @@
     <div class="panel-body">
         <ul class="panel-items" style="list-style-type:none">
             {{#each this}}
-            <li><a href="#/categories:{{name}}"><h2>{{name}}</h2></a></li>
+            <li><a href="#/books/categories/:{{name}}"><h2>{{name}}</h2></a></li>
                 {{#if books}}
-                    <ul class="{{name}}-category-books">
+                    <ul class="category-books">
                         {{#each books}}                   
                             <div class="book-div">
-                                <li><a href="#categories:{{name}}"><h3>{{name}}</h3></a></li>
+                                <li><a href="#/books/:{{id}}"><h3>{{name}}</h3></a></li>
                                 <h4>Author: {{author}}</h4>
                                 <img src="{{img}}" alt="Book Cover" class="book-img">
                             </div>   

@@ -37,30 +37,18 @@
 </head>
 
 <body>
-    <header id='initial-header'>
+    <header id="initial-header">
         <nav class="navbar navbar-default">
             <ul class="nav navbar-nav">
                 <li><a href="#/home">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Books
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#/books/allCategories" />All Categories</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="#/books/Category#1" />Category 1</a>
-                        </li>
-                        <li><a href="#/books/Category#2">Category 2</a></li>
-                        <li><a href="#/books/Category#3">Category 3</a></li>
-                    </ul>
-                </li>
+                        <span class="caret"></span></a></li>
                 <li><a href="#/about">About</a></li>
                 <li><a href="#/contacts">Contacts</a></li>
             </ul>
-
             <a href="#/auth" id="auth-btn" class="btn btn-success">Sign Up/Register</a>
         </nav>
-
     </header>
 
     <div id="app-container"></div>
@@ -85,9 +73,8 @@
     <script src="js/Controllers/homeController.js"></script>
     <script src="js/Controllers/userController.js"></script>
     <script src="js/Controllers/allCategoriesController.js"></script>
-    <script src="js/Controllers/categoryOneController.js"></script>
-    <script src="js/Controllers/categoryTwoController.js"></script>
-    <script src="js/Controllers/categoryThreeController.js"></script>
+    <script src="js/Controllers/bookController.js"></script>
+    <script src="js/Controllers/categoryController.js"></script>
     <script src="js/Controllers/aboutController.js"></script>
     <script src="js/Controllers/contactsController.js"></script>
     <script src="js/services/notifier.js"></script>

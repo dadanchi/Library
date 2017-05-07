@@ -6,6 +6,18 @@ const homeController = (() => {
             })
         };
 
+        loadCategoryDropDownMenu() {
+            const $dropDownButton = $(".dropdown-toggle");
+
+            data.getCategories().then(categories =>
+                $dropDownButton.on("click", () => {
+                    loadTemplate("dropDownCategory")
+                        .then((template) => {
+                            $dropDownButton.parent().html(template(categories));
+                        });
+                }));
+        }
+
         loadRegedUserView() {
             loadTemplate("reggedUser").then(template => {
                 $("#app-container").html(template);

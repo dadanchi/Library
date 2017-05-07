@@ -6,6 +6,16 @@ const data = (() => {
             })
         }
 
+        getOneBook(id) {
+            return this.getBooks().then(books => {
+                for (let i in books) {
+                    if (books[i].id === id) {
+                        return books[i];
+                    }
+                }
+            });
+        }
+
         getCategories() {
             return this.getBooks().then(books => {
                 let categories = [];
@@ -20,7 +30,6 @@ const data = (() => {
                         };
 
                         i++
-                        console.log(b.img);
                         resultCategories.push({
                             name: b.category,
                             books: []
@@ -31,8 +40,17 @@ const data = (() => {
                     resultCategories[currentIndex].books.push(b);
                 });
 
-                console.log(resultCategories);
                 return resultCategories;
+            });
+        }
+
+        getOneCategory(name) {
+            return this.getCategories().then(categories => {
+                for (let i in categories) {
+                    if (categories[i].name === name) {
+                        return categories[i];
+                    }
+                }
             });
         }
     };
