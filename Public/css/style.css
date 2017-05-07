@@ -26,3 +26,25 @@
 .author-text-zoom {
     float: right;
 }
+
+#app-container {
+    margin-right: auto; margin-left: auto; width: 80%;
+    /*margin-top: 5%;*/
+    margin-bottom: 5%;
+}
+
+.container-fluid {
+    top:30%;
+}
+
+.panel-heading {
+    background-color: transparent;
+    text-align: center;
+}
+.list-inline{
+    text-align:center;
+}
+.btn-facebook{
+    background-color: #204d74;
+    color: white;
+}
