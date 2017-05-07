@@ -15,3 +15,15 @@ function loadTemplate(templateName) {
         }
     })
 }
+
+
+/*
+function compile(data) {
+    var result = loadTemplate(templateName).then(template => {
+        var templateFunction = Handlebars.compile(template);
+        return templateFunction(data);
+    });
+
+    return result;
+}
+*/
