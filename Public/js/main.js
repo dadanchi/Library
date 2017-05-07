@@ -8,6 +8,7 @@ router.on({
         "home": homeController.load,
         "auth": userController.load,
         "signup": userController.signUp,
+        "logout": userController.logout,
     })
     .resolve();
 

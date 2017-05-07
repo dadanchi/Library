@@ -21,10 +21,15 @@ const userController = (() => {
             let dbReference = firebase.database();
 
             let username = $('#username-input').val();
-            let password = $('#password-input').val();
+            // if(!validator.isValidUserName(username)){
+            //     notifier.error('Invalid username');
+            //     $('#username-input').val('');
+            //     location.hash = '#auth';               
+            //     return;
+            // }
 
-            
-            
+            let password = $('#password-input').val();
+          
             let newUser = new User(username, password);
 
             // Check if username is taken, then continue
@@ -37,16 +42,6 @@ const userController = (() => {
 
                 $('#username-input').val('');
 
-                // validator.isValidPassword(password).then((resp) => {
-                //     if (resp) {
-                //         notifier.error('Invalid password : must be at least six characters');
-                //         location.hash = '#auth';
-                //         return;
-                //     }
-
-                //     //$('#password-input').val('');
-
-                // })
 
                 let userReference = dbReference.ref('Library/Users');
                 let newUserReference = userReference.push();
@@ -60,9 +55,19 @@ const userController = (() => {
                     books: newUser.books,
                 });
 
-                notifier.successfullRegistrationMsg('You have registered successfully!');
-                setTimeout(() => homeController.loadRegedUserView(), 2500);
+                notifier.successfullRegistrationMsg('You have registered successfully!');              
+                setTimeout(() => homeController.loadRegedUserView(), 500);
+                $('#initial-header').addClass('hidden');
             });
+        }
+
+        logout(){
+            //localStorage.clear();
+            notifier.info('You logged out successfully!');
+            location.hash = '#/home';
+            homeController.load('home');
+            $('#initial-header').removeClass('hidden');                     
+            location.hash = '#/home';
         }
     }
 

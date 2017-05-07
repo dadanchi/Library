@@ -15,18 +15,19 @@ const validator = (() => {
         }
 
         isValidUserName(username) {
+            let answer = false;
             if (username.length < MIN_NAME_SYMBOLS || username.length > MAX_SYMBOLS) {
                 //throw Error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
-                notifier.error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
-                location.hash = '#auth';
-                return;
+                //notifier.error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
+                //location.hash = '#auth';
+                return answer;
             }
 
             if (username.match(VALID_SYMBOLS)) {
                 //throw Error("Username can consist only of Capital and small letters");
-                notifier.error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
-                location.hash = '#auth';
-                return;
+                //notifier.error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
+                //location.hash = '#auth';
+                return answer;
             }
         }
 

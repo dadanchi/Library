@@ -9,6 +9,10 @@ const notifier = (() => {
          error(message){
             toastr.error(message, {timeOut: 2000});
         }
+
+        info(message){
+            toastr.info(message, {timeOut : 2000});
+        }
     }
 
     let notifier = new Notifier();
