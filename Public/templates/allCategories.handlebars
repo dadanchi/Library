@@ -1,13 +1,12 @@
-
 <div class="panel-default">
     <div class="panel-heading">
         <h3>Books List</h3>
     </div>
     <div class="panel-body">
         <ul class="panel-items" style="list-style-type:none">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            {{#each this}}
+            <li>{{counter @index}}: <a href="#/categories:{{name}}">{{name}}</a></li>
+            {{/each}}
         </ul>
     </div>
 </div>
