@@ -16,37 +16,58 @@ const userController = (() => {
             })
         }
 
-        loggenIn(){
-
-        }
-
         signUp() {
 
-            // let dbReference = firebase.database();
-            // let username = $('#username-input').val();
-            // let password = $('#password-input').val();
-            // let userId = getNextId();
-
-            // dbReference.ref('Library/Users/' + 4).set({
-            //     password: password,
-            //     username: username
-            // });
-
             let dbReference = firebase.database();
+
             let username = $('#username-input').val();
+            // if(!validator.isValidUserName(username)){
+            //     notifier.error('Invalid username');
+            //     $('#username-input').val('');
+            //     location.hash = '#auth';               
+            //     return;
+            // }
+
             let password = $('#password-input').val();
+          
+            let newUser = new User(username, password);
 
-            let userReference = dbReference.ref('Library/Users');
-            let newUserReference = userReference.push();
-            let key = userReference.push().key;
+            // Check if username is taken, then continue
+            let result = validator.usernameIsTaken(username).then((resp) => {
+                if (resp) {
+                    notifier.error('Username already taken!');
+                    location.hash = "#/auth";
+                    return;
+                }
 
-            newUserReference.set({
-                password: password,
-                username: username,
-                key: key
+                $('#username-input').val('');
+
+
+                let userReference = dbReference.ref('Library/Users');
+                let newUserReference = userReference.push();
+
+                let key = userReference.push().key;
+
+                newUserReference.set({
+                    password: newUser.passHash,
+                    username: newUser.username,
+                    key: key,
+                    books: newUser.books,
+                });
+
+                notifier.successfullRegistrationMsg('You have registered successfully!');             
+                setTimeout(() => homeController.loadRegedUserView(), 500);
+                $('#initial-header').addClass('hidden');
             });
-            notifier.successfullRegistrationMsg('You have registered successfully!');
-            setTimeout(() => homeController.loadRegedUserView(), 2500);
+        }
+
+        logout(){
+            localStorage.clear();
+            notifier.info('You logged out successfully!');
+            location.hash = '#/home';
+            homeController.load('home');
+            $('#initial-header').removeClass('hidden');                     
+            location.hash = '#/home';
         }
     }
 

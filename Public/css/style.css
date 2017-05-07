@@ -1,6 +1,12 @@
-#auth-btn {
+#auth-btn, #logout-btn {
     float: right;
     margin: 7px;
+}
+
+
+
+.hidden{
+    display: none;
 }
 
 
