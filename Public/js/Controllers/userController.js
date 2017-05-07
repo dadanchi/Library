@@ -55,14 +55,14 @@ const userController = (() => {
                     books: newUser.books,
                 });
 
-                notifier.successfullRegistrationMsg('You have registered successfully!');              
+                notifier.successfullRegistrationMsg('You have registered successfully!');             
                 setTimeout(() => homeController.loadRegedUserView(), 500);
                 $('#initial-header').addClass('hidden');
             });
         }
 
         logout(){
-            //localStorage.clear();
+            localStorage.clear();
             notifier.info('You logged out successfully!');
             location.hash = '#/home';
             homeController.load('home');

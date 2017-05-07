@@ -7,10 +7,10 @@ const homeController = (() => {
         };
 
         loadRegedUserView() {
-            loadTemplate("registeredUserView").then(template => {
+            loadTemplate("reggedUser").then(template => {
                 $("#app-container").html(template);
-            })
-        };
+            });
+        }
     }
     let homeController = new HomeController();
 
