@@ -13,21 +13,21 @@ const data = (() => {
                 let i = 0;
 
                 books.forEach(b => {
-                    if (!categories.hasOwnProperty(b.genre)) {
-                        categories[b.genre] = {
-                            name: b.genre,
+                    if (!categories.hasOwnProperty(b.category)) {
+                        categories[b.category] = {
+                            name: b.category,
                             key: i
                         };
 
                         i++
-
+                        console.log(b.img);
                         resultCategories.push({
-                            name: b.genre,
+                            name: b.category,
                             books: []
                         });
                     }
 
-                    let currentIndex = categories[b.genre].key;
+                    let currentIndex = categories[b.category].key;
                     resultCategories[currentIndex].books.push(b);
                 });
 

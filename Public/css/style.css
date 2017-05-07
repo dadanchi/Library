@@ -1,13 +1,14 @@
-#auth-btn, #logout-btn {
+#auth-btn,
+#logout-btn {
     float: right;
     margin: 7px;
 }
 
-
-
-.hidden{
+.hidden {
     display: none;
 }
 
-
-
+.book-img {
+    width: 100px;
+    height: 150px;
+}
