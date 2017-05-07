@@ -22,9 +22,6 @@
         };
 
         firebase.initializeApp(config);
-
-
-
     </script>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/3.9.0/firebase-app.js"></script>
@@ -47,9 +44,11 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Books
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#/books/allCategories"/>All Categories</a></li>
+                        <li><a href="#/books/allCategories" />All Categories</a>
+                        </li>
                         <li class="divider"></li>
-                        <li><a href="#/books/Category#1"/>Category 1</a></li>
+                        <li><a href="#/books/Category#1" />Category 1</a>
+                        </li>
                         <li><a href="#/books/Category#2">Category 2</a></li>
                         <li><a href="#/books/Category#3">Category 3</a></li>
                     </ul>
@@ -69,8 +68,11 @@
     <script src="./lib/script/navigo.js"></script>
     <script src="./lib/script/jquery.js"></script>
     <script src="./lib/script/handlebars.js"></script>
-    <script src = './lib/script/toastr.js'></script>
+    <script src="./lib/script/toastr.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha512.js"></script>
 
     <!--Application files-->
     <script src="js/templates.js"></script>
@@ -82,12 +84,12 @@
     <script src="js/Controllers/categoryOneController.js"></script>
     <script src="js/Controllers/categoryTwoController.js"></script>
     <script src="js/Controllers/categoryThreeController.js"></script>
-    <script src = 'js/services/notifier.js'></script>
+    <script src="js/services/notifier.js"></script>
 
     <!--Application init-->
     <script src="./js/main.js"></script>
 
-   <!-- <script src="./js/test.js"></script>-->
+    <!-- <script src="./js/test.js"></script>-->
 </body>
 
 </html>

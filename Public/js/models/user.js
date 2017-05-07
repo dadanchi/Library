@@ -26,7 +26,7 @@ class User {
         validator.isValidString(password);
         validator.isValidPassword(password);
 
-        // TODO -> Hash
-        this._passHash = password;
+        // Hash
+        this._passHash = CryptoJS.SHA512(password).toString();
     }
 }
