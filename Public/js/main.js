@@ -12,6 +12,7 @@ router.on({
     "books/Category#3": categoryThreeController.load,
     "auth": userController.load,
     "signup": userController.signUp,
+    "logout": userController.logout,
 })
 .resolve();
 

@@ -42,7 +42,6 @@ const userController = (() => {
 
                 $('#username-input').val('');
 
-
                 let userReference = dbReference.ref('Library/Users');
                 let newUserReference = userReference.push();
 
