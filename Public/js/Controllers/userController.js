@@ -3,7 +3,7 @@ const userController = (() => {
     class UserController {
 
         load() {
-            loadTemplate("signUp1").then(template => {
+            loadTemplate("signUp").then(template => {
                 $("#app-container").html(template);
             })
         }
