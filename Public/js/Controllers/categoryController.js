@@ -12,6 +12,16 @@ const categoryController = (() => {
                     $("#app-container").html(template(category));
                 })
         }
+
+        loadAll() {
+            Promise.all([
+                    loadTemplate('allCategories'),
+                    data.getCategories(),
+                ])
+                .then(([template, categories]) => {
+                    $("#app-container").html(template(categories));
+                });
+        }
     }
     let catOne = new CategoryController();
     return catOne;
