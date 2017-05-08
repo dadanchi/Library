@@ -53,6 +53,10 @@ ul a:hover {
     margin-bottom: 4%;
 }
 
+.book-div.zoom {
+    width: 100%;
+}
+
 .cover-div {
     float: left;
     margin-right: 2%;
@@ -68,8 +72,14 @@ ul a:hover {
     margin-bottom: 0;
 }
 
+.book-info.zoom {
+    width: 40%;
+    height: 300px;
+    text-overflow: ellipsis;
+}
+
 .book-info.zoom>h1 {
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 .book-info>a>h3 {
@@ -90,9 +100,18 @@ ul a:hover {
     float: left;
 }
 
+.description-div {
+    float: left;
+    height: 100%;
+}
+
 hr {
     border: none;
     height: 1px;
     color: #333;
     background-color: #333;
+}
+
+.book-more-info {
+    position: absolute;
 }
