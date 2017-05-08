@@ -7,6 +7,18 @@
         <h4 class="author-text zoom">Author: {{author}}</h4>
         <div class="description-div"><p>{{description}}</p></div>
     </div>
-     <a href="#/books/add/:{{id}}" class='add-book-btn'>Add to my list</a>
-     <a href="#/books/remove/:{{id}}" class='add-book-btn'>Remove from my list</a>
+    <ul>
+        <li>
+            <a href="#/books/add/:{{id}}" class='add-book-btn'><img src="..//images/Sign-Add-icon.png" class="book-icon"</a>
+        </li>
+        <li>
+            <a href="#/books/remove/:{{id}}" class='add-book-btn'><img src="../images/Very Basic delete.png" class="book-icon"</a>
+        </li>
+        <li>
+            <a href="#/books/add/:{{id}}" class='add-book-btn hidden'><img src="..//images/Sign-Add-icon.png" class="book-icon"</a>
+        </li>
+        <li>
+            <a href="#/books/remove/:{{id}}" class='add-book-btn hidden'><img src="../images/Very Basic delete.png" class="book-icon"</a>
+        </li>
+    </ul>
 </div> 
