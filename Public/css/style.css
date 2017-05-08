@@ -1,3 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    min-height: 7%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
 #auth-btn,
 #logout-btn {
     float: right;
@@ -8,35 +19,15 @@
     display: none;
 }
 
-.book-img {
-    width: 100px;
-    height: 150px;
-}
-
-.book-img-zoom {
-    width: 200px;
-    height: 300px;
-}
-
-.book-div {
-    width: 400px;
-    margin-left: 40px;
-}
-
-.author-text-zoom {
-    float: right;
-}
-
 #app-container {
     margin-right: auto;
     margin-left: auto;
     width: 80%;
-    /*margin-top: 5%;*/
-    margin-bottom: 5%;
+    min-height: 66%;
 }
 
-.container-fluid {
-    top: 30%;
+footer {
+    margin-top: 2%;
 }
 
 .panel-heading {
@@ -55,4 +46,46 @@
 
 ul a:hover {
     font-size: 1.2em;
+}
+
+.book-div {
+    overflow: hidden;
+    margin-bottom: 4%;
+}
+
+.cover-div {
+    float: left;
+    margin-right: 4%;
+    margin-top: 3%;
+}
+
+.book-info {
+    float: left;
+    padding: 1%;
+}
+
+.book-info>h1 {
+    margin-bottom: 0;
+}
+
+.book-info.zoom>h1 {
+    margin-top: 3%;
+}
+
+.book-info>a>h3 {
+    margin-top: 5%;
+}
+
+.book-img {
+    width: 100px;
+    height: 150px;
+}
+
+.book-img.zoom {
+    width: 200px;
+    height: 300px;
+}
+
+.author-text.zoom {
+    float: left;
 }
