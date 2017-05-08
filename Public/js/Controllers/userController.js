@@ -31,7 +31,8 @@ const userController = (() => {
 
                 notifier.success('everything went fine');
                 setTimeout(() => homeController.loadRegedUserView(), 500);
-                $('#initial-header').addClass('hidden');
+                $('#auth-btn').addClass('hidden');
+                $('#logout-btn').removeClass('hidden');
             }).catch(function (error) {
 
                 var errorCode = error.code;
@@ -46,7 +47,8 @@ const userController = (() => {
             notifier.info('You logged out successfully!');
             location.hash = '#/home';
             homeController.load('home');
-            $('#initial-header').removeClass('hidden');
+            $('#auth-btn').removeClass('hidden');
+            $('#logout-btn').addClass('hidden');
             location.hash = '#/home';
         }
 
@@ -67,7 +69,8 @@ const userController = (() => {
 
                 notifier.success(`${username} signed in!`);
                 setTimeout(() => homeController.loadRegedUserView(), 500);
-                $('#initial-header').addClass('hidden');
+                $('#auth-btn').addClass('hidden');
+                $('#logout-btn').removeClass('hidden');
 
             })
                 .catch(function () {
