@@ -118,10 +118,7 @@ const userController = (() => {
                 localStorage.setItem("username", username);
                 localStorage.setItem("auth-key", USER_AUTH_KEY);
 
-                notifier.success("Everything went fine");
-                setTimeout(() => homeController.load(), 500);
-                $("#auth-btn").addClass("hidden");
-                $("#logout-btn").removeClass("hidden");
+                data.signInUpAct(username);
 
                 $(".nav.navbar-nav").append('<li><a href="#/user/books/all" id="my-books">My books</a></li>');
             }).catch(function(error) {
@@ -157,10 +154,7 @@ const userController = (() => {
                     localStorage.setItem("username", user.displayName);
                     localStorage.setItem("auth-key", USER_AUTH_KEY);
 
-                    notifier.success(`Welcome, ${username}!`);
-                    setTimeout(() => homeController.load(), 500);
-                    $("#auth-btn").addClass("hidden");
-                    $("#logout-btn").removeClass("hidden");
+                    data.signInUpAct(username);
 
                     $(".nav.navbar-nav").append('<li><a href="#/user/books/all" id="my-books">My books</a></li>');
                 })

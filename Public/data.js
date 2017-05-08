@@ -94,6 +94,13 @@ const data = (() => {
                 key: key,
             });
         }
+
+        signInUpAct(username) {
+            notifier.success(`Welcome ${username}`);
+            setTimeout(() => homeController.load(), 500);
+            $("#auth-btn").addClass("hidden");
+            $("#logout-btn").removeClass("hidden");
+        }
     };
 
     let data = new Data();
