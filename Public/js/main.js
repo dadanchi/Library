@@ -6,8 +6,8 @@ var router = new Navigo(root, useHash, hash);
 
 router.on({
         "home": homeController.load,
-        "books/categories": categoryController.loadAll,
-        "books/categories/:name": categoryController.load,
+        "books/categories/all": categoryController.loadAll,
+        "books/category/:name": categoryController.load,
         "books/:id": bookController.load,
         "about": aboutController.load,
         "contacts": contactsController.load,
@@ -15,7 +15,7 @@ router.on({
         "signup": userController.signUp,
         "logout": userController.logout,
         'signin': userController.signIn,
-        //'add-books': allCategoriesController.load,
+        'books/add': userController.addBook,
     })
     .resolve();
 
@@ -30,4 +30,4 @@ homeController.loadCategoryDropDownMenu();
 // });
 
 
-window.onload = () => location.hash = "/home";
+window.onload = () => location.hash = "#/home";

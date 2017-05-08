@@ -2,6 +2,25 @@ const userController = (() => {
 
     class UserController {
 
+        addBook() {
+            let user = firebase.auth().currentUser;
+            if (user != null) {
+                console.log(user);
+            }
+            console.log(localStorage);
+            firebase.database().ref("Library/Users").once("value").then(snapshot => {
+                snapshot.forEach(s => {
+                    if (s.val().username === user.displayName) {
+                        console.log(s.val().key);
+                        console.log(s.val().username);
+                        firebase.database().ref("Library/Users/" + s.val().key + "/Books").set({
+                            1: "1",
+                        });
+                    }
+                });
+            });
+        }
+
         load() {
             loadTemplate("signUp").then(template => {
                 $("#app-container").html(template);
@@ -18,7 +37,7 @@ const userController = (() => {
             let password = $('#password-input').val();
 
 
-            return firebase.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
+            return firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
                 user.updateProfile({
                     displayName: username,
                     isAnonymous: false,
@@ -26,14 +45,16 @@ const userController = (() => {
 
                 data.createNewUserDataBase(password, username);
 
-                localStorage.setItem('username', user.username);
-                localStorage.setItem('passHash', user.password);
+                USER_AUTH_KEY = user.uid;
+
+                localStorage.setItem('username', user.displayName);
+                localStorage.setItem('auth-key', USER_AUTH_KEY);
 
                 notifier.success('everything went fine');
                 setTimeout(() => homeController.loadRegedUserView(), 500);
                 $('#auth-btn').addClass('hidden');
                 $('#logout-btn').removeClass('hidden');
-            }).catch(function (error) {
+            }).catch(function(error) {
 
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -43,7 +64,7 @@ const userController = (() => {
         }
 
         logout() {
-            //localStorage.clear();
+            localStorage.clear();
             notifier.info('You logged out successfully!');
             location.hash = '#/home';
             homeController.load('home');
@@ -59,28 +80,28 @@ const userController = (() => {
             const auth = firebase.auth();
             let USER_AUTH_KEY = '';
 
-            auth.signInWithEmailAndPassword(email, password).then(function (user) {
+            auth.signInWithEmailAndPassword(email, password).then(function(user) {
+                    console.log(user);
 
-                USER_AUTH_KEY = user.uid;
+                    USER_AUTH_KEY = user.uid;
 
-                localStorage.setItem('username', user.username);
-                localStorage.setItem('passHash', user.password);
-                localStorage.setItem('auth-key', user.USER_AUTH_KEY);
+                    localStorage.setItem('username', user.displayName);
+                    localStorage.setItem('auth-key', USER_AUTH_KEY);
 
-                notifier.success(`${username} signed in!`);
-                setTimeout(() => homeController.loadRegedUserView(), 500);
-                $('#auth-btn').addClass('hidden');
-                $('#logout-btn').removeClass('hidden');
+                    notifier.success(`${username} signed in!`);
+                    setTimeout(() => homeController.loadRegedUserView(), 500);
+                    $('#auth-btn').addClass('hidden');
+                    $('#logout-btn').removeClass('hidden');
 
-            })
-                .catch(function () {
+                })
+                .catch(function() {
                     notifier.error('Wrong email / password / username');
                     location.hash = '#/auth';
                     return;
                 })
 
 
-            auth.onAuthStateChanged(function (user) {
+            auth.onAuthStateChanged(function(user) {
                 if (user) {
                     // add functionality
 
@@ -157,7 +178,7 @@ const userController = (() => {
 //             // }
 
 //             let password = $('#password-input').val();
-          
+
 //             let newUser = new User(username, password);
 
 //             // Check if username is taken, then continue

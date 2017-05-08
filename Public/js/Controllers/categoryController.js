@@ -3,7 +3,6 @@ const categoryController = (() => {
     class CategoryController {
         load(params) {
             let name = params.name.substr(1);
-
             Promise.all([
                     loadTemplate("category"),
                     data.getOneCategory(name),
