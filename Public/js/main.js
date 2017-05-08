@@ -15,7 +15,7 @@ router.on({
         "signup": userController.signUp,
         "logout": userController.logout,
         'signin': userController.signIn,
-        'add-books': allCategoriesController.load,
+        //'add-books': allCategoriesController.load,
     })
     .resolve();
 
