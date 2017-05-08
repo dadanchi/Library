@@ -14,8 +14,10 @@ router.on({
         "auth": userController.load,
         "signup": userController.signUp,
         "logout": userController.logout,
-        'signin': userController.signIn,
-        'books/add': userController.addBook,
+        "signin": userController.signIn,
+        "books/add/:id": userController.addBook,
+        "books/remove/:id": userController.removeBook,
+        "user/books/all": userController.getMyBooks,
     })
     .resolve();
 

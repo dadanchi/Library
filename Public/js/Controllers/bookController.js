@@ -10,12 +10,6 @@ const bookController = (() => {
                 .then(([template, book]) => {
 
                     $("#app-container").html(template(book));
-
-                    console.log($(".add-book-btn").html());
-                    $(".add-book-btn").on("click", book => {
-                        userController.addBook();
-
-                    });
                 });
         }
     }

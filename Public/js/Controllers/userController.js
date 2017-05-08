@@ -2,23 +2,95 @@ const userController = (() => {
 
     class UserController {
 
-        addBook() {
+        addBook(params) {
+            let id = +params.id.substr(1);
+            console.log(id);
             let user = firebase.auth().currentUser;
             if (user != null) {
-                console.log(user);
-            }
-            console.log(localStorage);
-            firebase.database().ref("Library/Users").once("value").then(snapshot => {
-                snapshot.forEach(s => {
-                    if (s.val().username === user.displayName) {
-                        console.log(s.val().key);
-                        console.log(s.val().username);
-                        firebase.database().ref("Library/Users/" + s.val().key + "/Books").set({
-                            1: "1",
+                data.getOneBook(id).then(book => {
+                    let bookName = book.name;
+                    firebase.database().ref("Library/Users").once("value").then(snapshot => {
+                        snapshot.forEach(s => {
+                            if (s.val().username === user.displayName) {
+                                firebase.database().ref("Library/Users/" + s.val().key + "/Books/" + book.id).set(book);
+                                toastr.success("Successfully added the book");
+                            }
                         });
-                    }
+                    });
                 });
-            });
+            } else {
+                toastr.error("You need to be logged to add");
+            }
+        }
+
+        removeBook(params) {
+            let id = +params.id.substr(1);
+            let auth = firebase.auth().currentUser;
+            if (auth != null) {
+                let user;
+                firebase.database().ref("Library/Users").once("value").then(snapshot => {
+                    snapshot.forEach(s => {
+                        if (s.val().username === auth.displayName) {
+                            user = s.val();
+                        }
+                    });
+                    console.log(user);
+
+                    let userBooks = firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(snapshot => {
+                        let isFound = false;
+                        snapshot.forEach(s => {
+                            if (s.val().id === id) {
+                                isFound = true;
+                                // remove
+                                firebase.database()
+                                    .ref("Library/Users/" + user.key + "/Books/" + id)
+                                    .remove()
+                                    .then(() => {
+                                        toastr.success("Book successfully removed!");
+                                    });
+                            }
+                        });
+                        if (!isFound) {
+                            toastr.error("You haven't added this book to remove it");
+                        }
+                    });
+                });
+
+
+            } else {
+                toastr.error("You need to be logged to add");
+            }
+        }
+
+        getMyBooks() {
+            let auth = firebase.auth().currentUser;
+            if (auth != null) {
+                let user;
+
+                firebase.database().ref("Library/Users").once("value").then(users => {
+                    users.forEach(u => {
+                        if (u.val().username === auth.displayName) {
+                            user = u.val();
+                        }
+                    });
+
+                    let userBooks = [];
+                    Promise.all([
+                        firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(books => {
+                            books.forEach(b => {
+                                userBooks.push(b.val());
+                            });
+                            return userBooks;
+                        }),
+                        loadTemplate("userBooks")
+                    ]).then(([books, template]) => {
+                        console.log(books);
+                        $("#app-container").html(template(books));
+                    });
+                });
+            } else {
+                toastr.error("You need to be logged to add");
+            }
         }
 
         load() {
@@ -35,7 +107,7 @@ const userController = (() => {
             let username = $('#username-input').val();
 
             let password = $('#password-input').val();
-
+            let USER_AUTH_KEY = "";
 
             return firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
                 user.updateProfile({
@@ -47,7 +119,7 @@ const userController = (() => {
 
                 USER_AUTH_KEY = user.uid;
 
-                localStorage.setItem('username', user.displayName);
+                localStorage.setItem('username', username);
                 localStorage.setItem('auth-key', USER_AUTH_KEY);
 
                 notifier.success('everything went fine');
@@ -81,7 +153,6 @@ const userController = (() => {
             let USER_AUTH_KEY = '';
 
             auth.signInWithEmailAndPassword(email, password).then(function(user) {
-                    console.log(user);
 
                     USER_AUTH_KEY = user.uid;
 

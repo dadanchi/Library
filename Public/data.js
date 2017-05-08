@@ -85,7 +85,7 @@ const data = (() => {
             let userReference = dbReference.ref('Library/Users');
             let newUserReference = userReference.push();
 
-            let key = userReference.push().key;
+            let key = newUserReference.key;
 
             newUserReference.set({
                 password: password,

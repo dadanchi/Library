@@ -1,0 +1,13 @@
+<h1>My books</h1>
+<hr>
+    {{#each this}}                    
+        <div class="book-div">
+            <div class="cover-div">
+                    <img src="{{img}}" alt="Book Cover" class="book-img">
+            </div>
+            <div class="book-info">
+                <a href="#books/:{{id}}"><h3>{{name}}</h3></a>
+                <h4 class="author-text">Author: {{author}}</h4>
+            </div>
+        </div>
+    {{/each}}
