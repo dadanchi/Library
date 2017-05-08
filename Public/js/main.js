@@ -14,6 +14,7 @@ router.on({
         "auth": userController.load,
         "signup": userController.signUp,
         "logout": userController.logout,
+        'add-books': allCategoriesController.load,
     })
     .resolve();
 

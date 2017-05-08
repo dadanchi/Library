@@ -6,6 +6,10 @@ const notifier = (() => {
             toastr.success(message, 'Thank you!', { timeOut: 2000 });
         }
 
+        success(message){
+            toastr.success(message, {timeOut:1000});
+        }
+
          error(message){
             toastr.error(message, {timeOut: 2000});
         }

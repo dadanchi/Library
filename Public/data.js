@@ -76,6 +76,24 @@ const data = (() => {
                 return 0;
             });
         }
+
+        createNewUserDataBase(password, username) {
+            console.log('dosmth called');
+            let btn = $('#user-button');
+
+            let dbReference = firebase.database();
+            let userReference = dbReference.ref('Library/Users');
+            let newUserReference = userReference.push();
+
+            let key = userReference.push().key;
+
+            newUserReference.set({
+                password: password,
+                username: username,
+                //books: books,
+                key: key,
+            });
+        }
     };
 
     let data = new Data();
