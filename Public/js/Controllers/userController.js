@@ -27,12 +27,14 @@ const userController = (() => {
             let auth = firebase.auth().currentUser;
             if (auth != null) {
                 let user;
-                firebase.database().ref("Library/Users").once("value").then(snapshot => {
+                Promise.resolve(firebase.database().ref("Library/Users").once("value").then(snapshot => {
                     snapshot.forEach(s => {
                         if (s.val().username === auth.displayName) {
                             user = s.val();
                         }
                     });
+                    return user;
+                })).then(user => {
                     let userBooks = firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(snapshot => {
                         let isFound = false;
                         snapshot.forEach(s => {
@@ -52,8 +54,6 @@ const userController = (() => {
                         }
                     });
                 });
-
-
             } else {
                 toastr.error("You need to be logged to add");
             }
@@ -64,13 +64,15 @@ const userController = (() => {
             if (auth != null) {
                 let user;
 
-                firebase.database().ref("Library/Users").once("value").then(users => {
+                return Promise.resolve(firebase.database().ref("Library/Users").once("value").then(users => {
                     users.forEach(u => {
                         if (u.val().username === auth.displayName) {
                             user = u.val();
                         }
                     });
-
+                    return user;
+                })).then(user => {
+                    console.log(user);
                     let userBooks = [];
                     Promise.all([
                         firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(books => {
