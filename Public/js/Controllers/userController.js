@@ -106,29 +106,39 @@ const userController = (() => {
 
             let password = $('#password-input').val();
             let USER_AUTH_KEY = "";
+            let newUser = new User(username, password);
 
-            return firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
-                user.updateProfile({
-                    displayName: username,
-                    isAnonymous: false,
-                });
 
-                data.createNewUserDataBase(password, username);
+            Promise.resolve(validator.usernameIsTaken(username)).then(result => {
+                console.log(result);
+                if (!result) {
+                    return firebase.auth().createUserWithEmailAndPassword(email, newUser.passHash).then(function(user) {
+                        user.updateProfile({
+                            displayName: username,
+                            isAnonymous: false,
+                        });
 
-                USER_AUTH_KEY = user.uid;
+                        data.createNewUserDataBase(newUser.passHash, username);
 
-                localStorage.setItem("username", username);
-                localStorage.setItem("auth-key", USER_AUTH_KEY);
+                        USER_AUTH_KEY = user.uid;
 
-                data.signInUpAct(username);
+                        localStorage.setItem("username", username);
+                        localStorage.setItem("auth-key", USER_AUTH_KEY);
 
-                $(".nav.navbar-nav").append('<li><a href="#/user/books/all" id="my-books">My books</a></li>');
-            }).catch(function(error) {
+                        data.signInUpAct(username);
 
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                notifier.error(errorCode + ' - ' + errorMessage)
-            });
+                        $(".nav.navbar-nav").append('<li><a href="#/user/books/all" id="my-books">My books</a></li>');
+                    }).catch(function(error) {
+
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        notifier.error(errorCode + ' - ' + errorMessage)
+
+                    })
+                } else {
+                    toastr.error("Username is taken");
+                }
+            })
         }
 
         logout() {
@@ -147,7 +157,11 @@ const userController = (() => {
             const auth = firebase.auth();
             let USER_AUTH_KEY = "";
 
-            auth.signInWithEmailAndPassword(email, password).then(function(user) {
+            let newUser = new User(username, password);
+
+
+
+            auth.signInWithEmailAndPassword(email, newUser.passHash).then(function(user) {
 
                     USER_AUTH_KEY = user.uid;
 

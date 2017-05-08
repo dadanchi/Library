@@ -37,7 +37,7 @@ const validator = (() => {
                 //throw Error(`Password must have atleast ${MIN_PASSWORD_SYMBOLS} symbols`);
                 //notifier.error('Invalid password : must be at least six characters');
                 //location.hash = '#auth';
-                 return answer;
+                return answer;
             }
 
             if (password.length > MAX_SYMBOLS) {
@@ -53,12 +53,10 @@ const validator = (() => {
                 let result = false;
                 snapshot.forEach(u => {
                     if (u.val().username === username) {
-                        console.log("hereNot");
                         result = true;
                     }
                 });
-                console.log("hereTaken");
-                location.hash = '#auth';
+
                 return result;
             });
         }
