@@ -73,7 +73,6 @@ const userController = (() => {
                     });
                     return user;
                 })).then(user => {
-                    console.log(user);
                     let userBooks = [];
                     Promise.all([
                         firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(books => {

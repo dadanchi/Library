@@ -31,10 +31,7 @@ homeController.loadCategoryDropDownMenu();
 //     })
 // });
 
-
 window.onload = () => {
     userController.logout();
     location.hash = "#/home";
-    console.log(localStorage);
-
 };

@@ -1,149 +1,169 @@
-* {
-    margin: 0;
-    padding: 0;
-    min-height: 7%;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-#auth-btn,
-#logout-btn {
-    float: right;
-    margin: 7px;
-}
-
-.hidden {
-    display: none;
-}
-
-ul {
-    list-style-type: none;
-}
-
-a {
-    text-decoration: none !important;
-}
-
-#app-container {
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-    min-height: 66%;
-}
-
-footer {
-    margin-top: 2%;
-}
-
-.panel-heading {
-    background-color: transparent;
-    text-align: center;
-}
-
-.list-inline {
-    text-align: center;
-}
-
-.btn-facebook {
-    background-color: #204d74;
-    color: white;
-}
-
-ul a:hover {
-    font-size: 1.2em;
-}
-
-.book-div {
-    overflow: hidden;
-    margin-bottom: 4%;
-}
-
-.book-div.zoom {
-    width: 100%;
-}
-
-.cover-div {
-    float: left;
-    margin-right: 2%;
-    margin-top: 2%;
-}
-
-.book-info {
-    float: left;
-    padding: 1%;
-}
-
-.book-info>h1 {
-    margin-bottom: 0;
-}
-
-.book-info.zoom {
-    width: 40%;
-    height: 300px;
-    text-overflow: ellipsis;
-}
-
-.book-info.zoom>h1 {
-    margin-top: 3%;
-}
-
-.book-info>a>h3 {
-    margin-top: 5%;
-}
-
-.book-img {
-    width: 100px;
-    height: 150px;
-}
-
-.book-img.zoom {
-    width: 200px;
-    height: 300px;
-}
-
-.author-text.zoom {
-    float: left;
-}
-
-.description-div {
-    float: left;
-    height: 100%;
-}
-
-hr {
-    border: none;
-    height: 1px;
-    color: #333;
-    background-color: #333;
-}
-
-.book-more-info {
-    position: absolute;
-}
-
-.col-sm-4{
-    text-align: center;
-    margin-left:15px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.col-sm-8{
-
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.home-bottom-img{
-;
-}
-
-#home-text {
-    text-align: center;
-    font-family: 'Goudy Old Style';
-    margin-top:30%;
-    font-size: 3em;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        min-height: 7%;
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+    
+    #auth-btn,
+    #logout-btn {
+        float: right;
+        margin: 7px;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+    
+    a {
+        text-decoration: none !important;
+    }
+    
+    #app-container {
+        margin-right: auto;
+        margin-left: auto;
+        width: 80%;
+        min-height: 66%;
+    }
+    
+    form {
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 5%;
+    }
+    
+    #signUp-form {
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    
+    label,
+    input {
+        margin: 0 auto;
+        display: block;
+    }
+    
+    #sign-buttons {
+        margin-top: 1%;
+    }
+    
+    #sign-buttons>a {
+        margin: 0.2%;
+    }
+    
+    footer {
+        margin-top: 2%;
+    }
+    
+    .panel-heading {
+        background-color: transparent;
+        text-align: center;
+    }
+    
+    .list-inline {
+        text-align: center;
+    }
+    
+    .btn-facebook {
+        background-color: #204d74;
+        color: white;
+    }
+    
+    ul a:hover {
+        font-size: 1.2em;
+    }
+    
+    .book-div {
+        overflow: hidden;
+        margin-bottom: 4%;
+    }
+    
+    .book-div.zoom {
+        width: 100%;
+    }
+    
+    .cover-div {
+        float: left;
+        margin-right: 2%;
+        margin-top: 2%;
+    }
+    
+    .book-info {
+        float: left;
+        padding: 1%;
+    }
+    
+    .book-info>h1 {
+        margin-bottom: 0;
+    }
+    
+    .book-info.zoom {
+        width: 40%;
+        height: 300px;
+        text-overflow: ellipsis;
+    }
+    
+    .book-info.zoom>h1 {
+        margin-top: 3%;
+    }
+    
+    .book-info>a>h3 {
+        margin-top: 5%;
+    }
+    
+    .book-img {
+        width: 100px;
+        height: 150px;
+    }
+    
+    .book-img.zoom {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .author-text.zoom {
+        float: left;
+    }
+    
+    .description-div {
+        float: left;
+        height: 100%;
+    }
+    
+    hr {
+        border: none;
+        height: 1px;
+        color: #333;
+        background-color: #333;
+    }
+    
+    .book-more-info {
+        position: absolute;
+    }
+    
+    .col-sm-4 {
+        text-align: center;
+        margin-left: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .col-sm-8 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    #home-text {
+        text-align: center;
+        font-family: 'Goudy Old Style';
+        margin-top: 30%;
+        font-size: 3em;
+    }
