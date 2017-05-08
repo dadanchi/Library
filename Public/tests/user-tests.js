@@ -23,8 +23,8 @@ describe('Class User tests', () => {
         it('constructor should set correct password - 5542255', () => {
 
             chai.expect(actulsPass).to.equal(expectedPass);
-        })
-    })
+        });
+    });
 });
 
 mocha.run();
