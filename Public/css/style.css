@@ -19,6 +19,14 @@ body {
     display: none;
 }
 
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none !important;
+}
+
 #app-container {
     margin-right: auto;
     margin-left: auto;
