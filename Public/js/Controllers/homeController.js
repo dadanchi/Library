@@ -1,7 +1,7 @@
 const homeController = (() => {
     class HomeController {
         load() {
-            loadTemplate("home").then(template => {
+            return loadTemplate("home").then(template => {
                 $("#app-container").html(template);
             })
         };
@@ -16,12 +16,6 @@ const homeController = (() => {
                             $dropDownButton.parent().html(template(categories));
                         });
                 }));
-        }
-
-        loadRegedUserView() {
-            loadTemplate("reggedUser").then(template => {
-                $("#app-container").html(template);
-            });
         }
     }
     let homeController = new HomeController();
