@@ -123,3 +123,27 @@ hr {
 .book-more-info {
     position: absolute;
 }
+
+.col-sm-4{
+    text-align: center;
+    margin-left:15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.col-sm-8{
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.home-bottom-img{
+;
+}
+
+#home-text {
+    text-align: center;
+    font-family: 'Goudy Old Style';
+    margin-top:30%;
+    font-size: 3em;
+}
