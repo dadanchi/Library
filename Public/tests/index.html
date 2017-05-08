@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Library Tests</title>
+    <link rel="stylesheet" href="./lib/mocha.css" />
+
+    
+
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDjPeNER8gKmuvaSHocL6JXSYT6gWMqwR4",
+            authDomain: "library-94284.firebaseapp.com",
+            databaseURL: "https://library-94284.firebaseio.com",
+            projectId: "library-94284",
+            storageBucket: "library-94284.appspot.com",
+            messagingSenderId: "8412375293"
+        };
+
+        firebase.initializeApp(config);
+    </script>
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/3.9.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/3.9.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/3.9.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/3.9.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/3.9.0/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+</head>
+
+<body>
+
+    <div id="mocha"></div>
+
+    <!--Test scripts-->
+    <script src = './lib/mocha.js'></script>
+    <script src = './lib/chai.js'></script>
+    <script src = './lib/sinon.js'></script>
+    <script src = './lib/sinon-chai.js'></script>
+
+    <!--Libraries-->
+    <script src="../lib/script/navigo.js"></script>
+    <script src="../lib/script/jquery.js"></script>
+    <script src="../lib/script/handlebars.js"></script>
+    <script src="../js/utils/handlebarsExtensions.js"></script>
+    <script src="../lib/script/toastr.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core-min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/hmac-sha512.js"></script>
+
+    <!--Application files-->
+
+    <!--<script src="../data.js"></script>
+    <script src="../js/templates.js"></script>
+        
+    <script src="../js/Controllers/homeController.js"></script>
+    <script src="../js/Controllers/userController.js"></script>
+    <script src="../js/Controllers/bookController.js"></script>
+    <script src="../js/Controllers/categoryController.js"></script>
+    <script src="../js/Controllers/aboutController.js"></script>
+    <script src="../js/Controllers/contactsController.js"></script>
+    <script src="../js/services/notifier.js"></script>-->
+
+    <script src="../js/models/user.js"></script>
+    <script src="../js/utils/validator.js"></script>
+
+    <!--Unit tests-->
+    <script src = 'user-tests.js'></script>
+
+
+</body>
+
+</html>
