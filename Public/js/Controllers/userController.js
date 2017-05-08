@@ -4,7 +4,6 @@ const userController = (() => {
 
         addBook(params) {
             let id = +params.id.substr(1);
-            console.log(id);
             let user = firebase.auth().currentUser;
             if (user != null) {
                 data.getOneBook(id).then(book => {
@@ -34,8 +33,6 @@ const userController = (() => {
                             user = s.val();
                         }
                     });
-                    console.log(user);
-
                     let userBooks = firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(snapshot => {
                         let isFound = false;
                         snapshot.forEach(s => {
@@ -84,7 +81,6 @@ const userController = (() => {
                         }),
                         loadTemplate("userBooks")
                     ]).then(([books, template]) => {
-                        console.log(books);
                         $("#app-container").html(template(books));
                     });
                 });
