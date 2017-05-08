@@ -142,7 +142,13 @@ const userController = (() => {
         }
 
         logout() {
-            localStorage.clear();
+            firebase.auth().signOut().then(() => {
+                localStorage.clear();
+            }).catch((error) => {
+                notifier.error("Problems with signing out");
+                location.hash = "#/auth";
+                return;
+            });
             homeController.load().then(() => {
                 $("#auth-btn").removeClass("hidden");
                 $("#logout-btn").addClass("hidden");
