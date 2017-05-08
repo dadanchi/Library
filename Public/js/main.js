@@ -6,7 +6,7 @@ var router = new Navigo(root, useHash, hash);
 
 router.on({
         "home": homeController.load,
-        "books/allCategories": allCategoriesController.load,
+        "books/categories": categoryController.loadAll,
         "books/categories/:name": categoryController.load,
         "books/:id": bookController.load,
         "about": aboutController.load,
