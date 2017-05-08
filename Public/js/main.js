@@ -32,4 +32,9 @@ homeController.loadCategoryDropDownMenu();
 // });
 
 
-window.onload = () => location.hash = "#/home";
+window.onload = () => {
+    userController.logout();
+    location.hash = "#/home";
+    console.log(localStorage);
+
+};

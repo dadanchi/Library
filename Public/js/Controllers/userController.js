@@ -40,7 +40,8 @@ const userController = (() => {
                         snapshot.forEach(s => {
                             if (s.val().id === id) {
                                 isFound = true;
-                                // remove
+
+                                // remove the found book
                                 firebase.database()
                                     .ref("Library/Users/" + user.key + "/Books/" + id)
                                     .remove()
@@ -129,12 +130,10 @@ const userController = (() => {
                 var errorMessage = error.message;
                 notifier.error(errorCode + ' - ' + errorMessage)
             });
-
         }
 
         logout() {
             localStorage.clear();
-            notifier.info('You logged out successfully!');
             homeController.load().then(() => {
                 $("#auth-btn").removeClass("hidden");
                 $("#logout-btn").addClass("hidden");
