@@ -7,45 +7,40 @@ const validator = (() => {
     class Validator {
         isValidString(str) {
             if (!str || typeof str !== "string") {
-                throw Error("Value must be a string");
+                notifier.wrongUserNameMsg();
+                return false;
             }
             if (str.trim().length === 0) {
-                throw Error("Value cannot be full of whitespaces");
+                notifier.wrongUserNameMsg();
+                return false;
             }
+            return true;
         }
 
         isValidUserName(username) {
-            let answer = false;
             if (username.length < MIN_NAME_SYMBOLS || username.length > MAX_SYMBOLS) {
-                //throw Error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
-                //notifier.error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
-                //location.hash = '#auth';
-                return answer;
+                notifier.wrongUserNameMsg();
+                return false;
+            }
+            if (username.match(VALID_SYMBOLS)) {
+                notifier.wrongUserNameMsg();
+                return false;
             }
 
-            if (username.match(VALID_SYMBOLS)) {
-                //throw Error("Username can consist only of Capital and small letters");
-                //notifier.error(`Username must be between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols`);
-                //location.hash = '#auth';
-                return answer;
-            }
+            return true;
         }
 
         isValidPassword(password) {
-            let answer = false;
             if (password.length < MIN_PASSWORD_SYMBOLS) {
-                //throw Error(`Password must have atleast ${MIN_PASSWORD_SYMBOLS} symbols`);
-                //notifier.error('Invalid password : must be at least six characters');
-                //location.hash = '#auth';
-                return answer;
+                notifier.wrongPasswordMsg();
+                return false;
             }
 
             if (password.length > MAX_SYMBOLS) {
-                // throw Error(`Password cannot exceed  ${MAX_SYMBOLS} symbols`);
-                // // notifier.error('Invalid password : must be at least six characters');
-                // // location.hash = '#auth';
-                return answer;
+                notifier.wrongPasswordMsg();
+                return false;
             }
+            return true;
         }
 
         usernameIsTaken(username) {

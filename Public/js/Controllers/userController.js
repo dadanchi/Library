@@ -102,9 +102,23 @@ const userController = (() => {
             let dbReference = firebase.database();
 
             let email = $('#email-input').val();
-            let username = $('#username-input').val();
 
+            let username = $('#username-input').val();
+					if (!validator.isValidUserName(username) || !validator.isValidString(username)) {
+						$('#username-input').val('');
+                        location.hash = '#/auth';
+						return;
+					}
+
+            
             let password = $('#password-input').val();
+             if(!validator.isValidPassword(password)){
+                 $('#password-input').val('');
+                 location.hash = '#/auth';
+                 return;
+             }
+
+
             let USER_AUTH_KEY = "";
             let newUser = new User(username, password);
 
