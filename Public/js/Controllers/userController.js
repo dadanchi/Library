@@ -150,6 +150,7 @@ const userController = (() => {
 
                     })
                 } else {
+                    location.hash = '#/auth';
                     toastr.error("Username is taken");
                 }
             })
