@@ -21,7 +21,7 @@ For the purpose of our project we designed and implemented an object-oriented we
 The Web Application consists of the following sections:
 
 ### Home section 
- - *Welcome screen with small preview of what you can expect form our cite.* (TO: FIX)
+ - *Welcome screen with a preview of what you can expect form our cite.* 
   
 ### Books section 
  - *Books button leads you to drop-down list from which you can choose to look at all our books or books from specific Category (Genre)*
@@ -46,15 +46,19 @@ The Web Application consists of the following sections:
  - *Pops notification message if confirmed details does not match any already registered user in our database*
  - *Pops notification message if the user is logged in successful*
 
+### My books section 
+ - *Loads only on user's successful login*
+ - *Shows all the books of the user in his personal storage*
+
 ### Logout section 
  - *Logout button leads you to the "Home section"*
-  - *Pops notification message that the user has successfully logged out*
+ - *Pops notification message that the user has successfully logged out*
   
   
+ 
 ##Deliverables
- - *Record a short video showcasing your application*TO:DO
- - *Preview at Telerik Academy Showcase System*TO:DO
- - *Link for the GitHub repository of our SPA*TO:DO
- - *Link to the presentation* (IF SUCH)
- - *Hosted application on a server* TO:DO
+ - *Record a short video showcasing your application - <a href="https://www.youtube.com/watch?v=A830VF6dwhs&feature=youtu.be">Video</a>*
+ - *Preview at Telerik Academy Showcase System - <a href="http://best.telerikacademy.com/projects/618/Library">Showcase System</a>*
+ - *Link for the GitHub repository of our SPA - <a href="https://github.com/dadanchi/Library">GitHub-Repository</a>*
+ - *Hosted application on a server  - <a href="https://library-94284.firebaseapp.com/#/home">Preview</a>*
 
