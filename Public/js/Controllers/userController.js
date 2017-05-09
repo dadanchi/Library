@@ -191,13 +191,6 @@ const userController = (() => {
 
                 }
             });
-
-            // let currentUser = auth.currentUser;
-            // console.log('cntrl ' + currentUser.email);
-            // console.log('cntrl ' + currentUser.displayName);
-            // let newUser = new User(username, password);
-            // newUser = currentUser;
-            // newUser.doSomething();
         }
     }
 
