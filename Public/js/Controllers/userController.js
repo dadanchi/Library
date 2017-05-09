@@ -56,7 +56,7 @@ const userController = (() => {
                     });
                 });
             } else {
-                toastr.error("You need to be logged to add");
+                toastr.error("You need to be logged to remove");
             }
         }
 
