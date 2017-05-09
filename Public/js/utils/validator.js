@@ -41,9 +41,9 @@ const validator = (() => {
             }
 
             if (password.length > MAX_SYMBOLS) {
-                //throw Error(`Password cannot exceed  ${MAX_SYMBOLS} symbols`);
-                //notifier.error('Invalid password : must be at least six characters');
-                //location.hash = '#auth';
+                // throw Error(`Password cannot exceed  ${MAX_SYMBOLS} symbols`);
+                // // notifier.error('Invalid password : must be at least six characters');
+                // // location.hash = '#auth';
                 return answer;
             }
         }
