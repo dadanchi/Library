@@ -25,20 +25,67 @@ describe('Class User tests', () => {
             chai.expect(actulsPass).to.equal(expectedPass);
         });
     });
-   
+
 });
 
 describe('Class Validator tests', () => {
+
+    const notifierStubUN = sinon.stub(notifier, 'wrongUserNameMsg');
+    const notifierStubPass = sinon.stub(notifier, 'wrongPasswordMsg');
+
     describe('isValidString test', () => {
+        let inValidInput = 454;
 
-        const inValidInput = 454;
-
-        it('constructor should return instance of User', () => {
-            chai.expect(validator.isValidString).to.throw(('Value must be a string'));
+        it('Should call notifier if input type is not string', () => {
+            validator.isValidString(inValidInput);
+            chai.expect(notifierStubUN).to.have.been.called;
         });
 
-            
-    })    
+        it('Should call notifier if there is no input', () => {
+            validator.isValidString('');
+            chai.expect(notifierStubUN).to.have.been.called;
+        });
+    })
+
+    describe('isValidUserName tests', () => {
+        const MIN_NAME_SYMBOLS = 3,
+            MAX_SYMBOLS = 15,
+            VALID_SYMBOLS = /^A-Za-z/;
+
+        it(`Should call notifier if input length is less than ${MIN_NAME_SYMBOLS} symbols`, () => {
+            validator.isValidUserName('az');
+            chai.expect(notifierStubUN).to.have.been.called;
+        });
+
+        it(`Should call notifier if input length is more than ${MAX_SYMBOLS} symbols`, () => {
+            validator.isValidUserName('bukvabukvabukvabukva');
+            chai.expect(notifierStubUN).to.have.been.called;
+        });
+
+        it(`Should call notifier if input symbols does not match  ${VALID_SYMBOLS}`, () => {
+            validator.isValidUserName('sdk@ll%');
+            chai.expect(notifierStubUN).to.have.been.called;
+        });
+    });
+
+    describe('isValidPassword tests', () => {
+
+    const MAX_SYMBOLS = 15,
+            MIN_PASSWORD_SYMBOLS = 6;
+
+        it(`Should call notifier if password length is less than ${MIN_PASSWORD_SYMBOLS} symbols`, () => {
+            validator.isValidPassword('452');
+            chai.expect(notifierStubPass).to.have.been.called;
+        });
+
+        it(`Should call notifier if password length is more than ${MAX_SYMBOLS} symbols`, () => {
+            validator.isValidPassword('12345123451234512345');
+            chai.expect(notifierStubPass).to.have.been.called;
+        });
+
+
+
+    })
 });
 
 mocha.run();
