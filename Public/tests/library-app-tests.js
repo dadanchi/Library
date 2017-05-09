@@ -82,9 +82,6 @@ describe('Class Validator tests', () => {
             validator.isValidPassword('12345123451234512345');
             chai.expect(notifierStubPass).to.have.been.called;
         });
-
-
-
     })
 });
 
