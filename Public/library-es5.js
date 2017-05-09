@@ -1,607 +1,718 @@
+"use strict";
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 //data.js
 
-const data = (() => {
-    class Data {
-        getBooks() {
-            return firebase.database().ref("Library/Books").once("value").then(snapshot => {
-                let books = snapshot.val();
-
-                return books;
-            });
+var data = function () {
+    var Data = function () {
+        function Data() {
+            _classCallCheck(this, Data);
         }
 
-        getOneBook(id) {
-            return this.getBooks().then(books => {
-                for (let i in books) {
-                    if (books[i].id === id) {
-                        return books[i];
-                    }
-                }
-            });
-        }
+        _createClass(Data, [{
+            key: "getBooks",
+            value: function getBooks() {
+                return firebase.database().ref("Library/Books").once("value").then(function (snapshot) {
+                    var books = snapshot.val();
 
-        getCategories() {
-            return this.getBooks().then(books => {
-                let categories = [];
-                let resultCategories = [];
-                let i = 0;
-
-                books.forEach(b => {
-                    if (!categories.hasOwnProperty(b.category)) {
-                        categories[b.category] = {
-                            name: b.category,
-                            key: i
-                        };
-
-                        i++
-                        resultCategories.push({
-                            name: b.category,
-                            books: []
-                        });
-                    }
-
-                    let currentIndex = categories[b.category].key;
-                    resultCategories[currentIndex].books.push(b);
+                    return books;
                 });
-
-                this.sortByName(resultCategories);
-
-                for (let i in resultCategories) {
-                    this.sortByName(resultCategories[i].books);
-                }
-
-                return resultCategories;
-            });
-        }
-
-        getOneCategory(name) {
-            return this.getCategories().then(categories => {
-                for (let i in categories) {
-                    if (categories[i].name === name) {
-                        return categories[i];
+            }
+        }, {
+            key: "getOneBook",
+            value: function getOneBook(id) {
+                return this.getBooks().then(function (books) {
+                    for (var i in books) {
+                        if (books[i].id === id) {
+                            return books[i];
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
+        }, {
+            key: "getCategories",
+            value: function getCategories() {
+                var _this = this;
 
-        sortByName(array) {
-            return array.sort((a, b) => {
-                let name1 = a.name.replace(/\s+/g, '').toLowerCase();
-                let name2 = b.name.replace(/\s+/g, '').toLowerCase();
+                return this.getBooks().then(function (books) {
+                    var categories = [];
+                    var resultCategories = [];
+                    var i = 0;
 
-                if (name1 > name2) {
-                    return 1;
-                } else if (name1 > name2) {
-                    return -1;
-                }
+                    books.forEach(function (b) {
+                        if (!categories.hasOwnProperty(b.category)) {
+                            categories[b.category] = {
+                                name: b.category,
+                                key: i
+                            };
 
-                return 0;
-            });
-        }
+                            i++;
+                            resultCategories.push({
+                                name: b.category,
+                                books: []
+                            });
+                        }
 
-        createNewUserDataBase(password, username) {
-            console.log('dosmth called');
-            let btn = $('#user-button');
+                        var currentIndex = categories[b.category].key;
+                        resultCategories[currentIndex].books.push(b);
+                    });
 
-            let dbReference = firebase.database();
-            let userReference = dbReference.ref('Library/Users');
-            let newUserReference = userReference.push();
+                    _this.sortByName(resultCategories);
 
-            let key = newUserReference.key;
+                    for (var _i in resultCategories) {
+                        _this.sortByName(resultCategories[_i].books);
+                    }
 
-            newUserReference.set({
-                password: password,
-                username: username,
-                //books: books,
-                key: key,
-            });
-        }
+                    return resultCategories;
+                });
+            }
+        }, {
+            key: "getOneCategory",
+            value: function getOneCategory(name) {
+                return this.getCategories().then(function (categories) {
+                    for (var i in categories) {
+                        if (categories[i].name === name) {
+                            return categories[i];
+                        }
+                    }
+                });
+            }
+        }, {
+            key: "sortByName",
+            value: function sortByName(array) {
+                return array.sort(function (a, b) {
+                    var name1 = a.name.replace(/\s+/g, '').toLowerCase();
+                    var name2 = b.name.replace(/\s+/g, '').toLowerCase();
 
-        signInUpAct(username) {
-            notifier.success(`Welcome ${username}`);
-            setTimeout(() => homeController.load(), 500);
-            $("#auth-btn").addClass("hidden");
-            $("#logout-btn").removeClass("hidden");
-        }
-    };
+                    if (name1 > name2) {
+                        return 1;
+                    } else if (name1 > name2) {
+                        return -1;
+                    }
 
-    let data = new Data();
+                    return 0;
+                });
+            }
+        }, {
+            key: "createNewUserDataBase",
+            value: function createNewUserDataBase(password, username) {
+                console.log('dosmth called');
+                var btn = $('#user-button');
+
+                var dbReference = firebase.database();
+                var userReference = dbReference.ref('Library/Users');
+                var newUserReference = userReference.push();
+
+                var key = newUserReference.key;
+
+                newUserReference.set({
+                    password: password,
+                    username: username,
+                    //books: books,
+                    key: key
+                });
+            }
+        }, {
+            key: "signInUpAct",
+            value: function signInUpAct(username) {
+                notifier.success("Welcome " + username);
+                setTimeout(function () {
+                    return homeController.load();
+                }, 500);
+                $("#auth-btn").addClass("hidden");
+                $("#logout-btn").removeClass("hidden");
+            }
+        }]);
+
+        return Data;
+    }();
+
+    ;
+
+    var data = new Data();
     return data;
-})();
+}();
 
 //validator.js
-const validator = (() => {
-    const MIN_NAME_SYMBOLS = 3,
+var validator = function () {
+    var MIN_NAME_SYMBOLS = 3,
         MAX_SYMBOLS = 15,
         MIN_PASSWORD_SYMBOLS = 6,
         VALID_SYMBOLS = /^A-Za-z/;
 
-    class Validator {
-        isValidString(str) {
-            if (!str || typeof str !== "string") {
-                notifier.wrongUserNameMsg();
-                return false;
-            }
-            if (str.trim().length === 0) {
-                notifier.wrongUserNameMsg();
-                return false;
-            }
-            return true;
+    var Validator = function () {
+        function Validator() {
+            _classCallCheck(this, Validator);
         }
 
-        isValidUserName(username) {
-            if (username.length < MIN_NAME_SYMBOLS || username.length > MAX_SYMBOLS) {
-                notifier.wrongUserNameMsg();
-                return false;
+        _createClass(Validator, [{
+            key: "isValidString",
+            value: function isValidString(str) {
+                if (!str || typeof str !== "string") {
+                    notifier.wrongUserNameMsg();
+                    return false;
+                }
+                if (str.trim().length === 0) {
+                    notifier.wrongUserNameMsg();
+                    return false;
+                }
+                return true;
             }
-            if (username.match(VALID_SYMBOLS)) {
-                notifier.wrongUserNameMsg();
-                return false;
+        }, {
+            key: "isValidUserName",
+            value: function isValidUserName(username) {
+                if (username.length < MIN_NAME_SYMBOLS || username.length > MAX_SYMBOLS) {
+                    notifier.wrongUserNameMsg();
+                    return false;
+                }
+                if (username.match(VALID_SYMBOLS)) {
+                    notifier.wrongUserNameMsg();
+                    return false;
+                }
+
+                return true;
             }
+        }, {
+            key: "isValidPassword",
+            value: function isValidPassword(password) {
+                if (password.length < MIN_PASSWORD_SYMBOLS) {
+                    notifier.wrongPasswordMsg();
+                    return false;
+                }
 
-            return true;
-        }
-
-        isValidPassword(password) {
-            if (password.length < MIN_PASSWORD_SYMBOLS) {
-                notifier.wrongPasswordMsg();
-                return false;
+                if (password.length > MAX_SYMBOLS) {
+                    notifier.wrongPasswordMsg();
+                    return false;
+                }
+                return true;
             }
+        }, {
+            key: "usernameIsTaken",
+            value: function usernameIsTaken(username) {
+                return firebase.database().ref("Library/Users/").once("value").then(function (snapshot) {
+                    var result = false;
+                    snapshot.forEach(function (u) {
+                        if (u.val().username === username) {
+                            result = true;
+                        }
+                    });
 
-            if (password.length > MAX_SYMBOLS) {
-                notifier.wrongPasswordMsg();
-                return false;
-            }
-            return true;
-        }
-
-        usernameIsTaken(username) {
-            return firebase.database().ref("Library/Users/").once("value").then(snapshot => {
-                let result = false;
-                snapshot.forEach(u => {
-                    if (u.val().username === username) {
-                        result = true;
-                    }
+                    return result;
                 });
+            }
+        }]);
 
-                return result;
-            });
-        }
-    }
+        return Validator;
+    }();
 
-    let validator = new Validator();
+    var validator = new Validator();
     return validator;
-})();
+}();
 
 //Controllers
 //homeController.js
 
-const homeController = (() => {
-    class HomeController {
-        load() {
-            return loadTemplate("home").then(template => {
-                $("#app-container").html(template);
-            })
-        };
+var homeController = function () {
+    var HomeController = function () {
+        function HomeController() {
+            _classCallCheck(this, HomeController);
+        }
 
-        loadCategoryDropDownMenu() {
-            const $dropDownButton = $(".dropdown-toggle");
+        _createClass(HomeController, [{
+            key: "load",
+            value: function load() {
+                return loadTemplate("home").then(function (template) {
+                    $("#app-container").html(template);
+                });
+            }
+        }, {
+            key: "loadCategoryDropDownMenu",
+            value: function loadCategoryDropDownMenu() {
+                var $dropDownButton = $(".dropdown-toggle");
 
-            data.getCategories().then(categories =>
-                $dropDownButton.on("click", () => {
-                    loadTemplate("dropDownCategory")
-                        .then((template) => {
+                data.getCategories().then(function (categories) {
+                    return $dropDownButton.on("click", function () {
+                        loadTemplate("dropDownCategory").then(function (template) {
                             $dropDownButton.parent().html(template(categories));
                         });
-                }));
-        }
-    }
-    let homeController = new HomeController();
+                    });
+                });
+            }
+        }]);
+
+        return HomeController;
+    }();
+
+    var homeController = new HomeController();
 
     return homeController;
-})();
+}();
 
 //userController.js
-const userController = (() => {
-
-    class UserController {
-
-        addBook(params) {
-            let id = +params.id.substr(1);
-            let user = firebase.auth().currentUser;
-            if (user != null) {
-                data.getOneBook(id).then(book => {
-                    let bookName = book.name;
-                    firebase.database().ref("Library/Users").once("value").then(snapshot => {
-                        snapshot.forEach(s => {
-                            if (s.val().username === user.displayName) {
-                                firebase.database().ref("Library/Users/" + s.val().key + "/Books/" + book.id).set(book);
-                                toastr.success("Successfully added the book");
-                            }
-                        });
-                    });
-                });
-            } else {
-                toastr.error("You need to be logged to add");
-            }
+var userController = function () {
+    var UserController = function () {
+        function UserController() {
+            _classCallCheck(this, UserController);
         }
 
-        removeBook(params) {
-            let id = +params.id.substr(1);
-            let auth = firebase.auth().currentUser;
-            if (auth != null) {
-                let user;
-                Promise.resolve(firebase.database().ref("Library/Users").once("value").then(snapshot => {
-                    snapshot.forEach(s => {
-                        if (s.val().username === auth.displayName) {
-                            user = s.val();
-                        }
+        _createClass(UserController, [{
+            key: "addBook",
+            value: function addBook(params) {
+                var id = +params.id.substr(1);
+                var user = firebase.auth().currentUser;
+                if (user != null) {
+                    data.getOneBook(id).then(function (book) {
+                        var bookName = book.name;
+                        firebase.database().ref("Library/Users").once("value").then(function (snapshot) {
+                            snapshot.forEach(function (s) {
+                                if (s.val().username === user.displayName) {
+                                    firebase.database().ref("Library/Users/" + s.val().key + "/Books/" + book.id).set(book);
+                                    toastr.success("Successfully added the book");
+                                }
+                            });
+                        });
                     });
-                    return user;
-                })).then(user => {
-                    let userBooks = firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(snapshot => {
-                        let isFound = false;
-                        snapshot.forEach(s => {
-                            if (s.val().id === id) {
-                                isFound = true;
+                } else {
+                    toastr.error("You need to be logged to add");
+                }
+            }
+        }, {
+            key: "removeBook",
+            value: function removeBook(params) {
+                var id = +params.id.substr(1);
+                var auth = firebase.auth().currentUser;
+                if (auth != null) {
+                    var user = void 0;
+                    Promise.resolve(firebase.database().ref("Library/Users").once("value").then(function (snapshot) {
+                        snapshot.forEach(function (s) {
+                            if (s.val().username === auth.displayName) {
+                                user = s.val();
+                            }
+                        });
+                        return user;
+                    })).then(function (user) {
+                        var userBooks = firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(function (snapshot) {
+                            var isFound = false;
+                            snapshot.forEach(function (s) {
+                                if (s.val().id === id) {
+                                    isFound = true;
 
-                                // remove the found book
-                                firebase.database()
-                                    .ref("Library/Users/" + user.key + "/Books/" + id)
-                                    .remove()
-                                    .then(() => {
+                                    // remove the found book
+                                    firebase.database().ref("Library/Users/" + user.key + "/Books/" + id).remove().then(function () {
                                         toastr.success("Book successfully removed!");
                                     });
+                                }
+                            });
+                            if (!isFound) {
+                                toastr.error("You haven't added this book to remove it");
                             }
                         });
-                        if (!isFound) {
-                            toastr.error("You haven't added this book to remove it");
-                        }
                     });
-                });
-            } else {
-                toastr.error("You need to be logged to remove");
+                } else {
+                    toastr.error("You need to be logged to remove");
+                }
             }
-        }
+        }, {
+            key: "getMyBooks",
+            value: function getMyBooks() {
+                var auth = firebase.auth().currentUser;
+                if (auth != null) {
+                    var user = void 0;
 
-        getMyBooks() {
-            let auth = firebase.auth().currentUser;
-            if (auth != null) {
-                let user;
-
-                return Promise.resolve(firebase.database().ref("Library/Users").once("value").then(users => {
-                    users.forEach(u => {
-                        if (u.val().username === auth.displayName) {
-                            user = u.val();
-                        }
-                    });
-                    return user;
-                })).then(user => {
-                    let userBooks = [];
-                    Promise.all([
-                        firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(books => {
-                            books.forEach(b => {
+                    return Promise.resolve(firebase.database().ref("Library/Users").once("value").then(function (users) {
+                        users.forEach(function (u) {
+                            if (u.val().username === auth.displayName) {
+                                user = u.val();
+                            }
+                        });
+                        return user;
+                    })).then(function (user) {
+                        var userBooks = [];
+                        Promise.all([firebase.database().ref("Library/Users/" + user.key + "/Books").once("value").then(function (books) {
+                            books.forEach(function (b) {
                                 userBooks.push(b.val());
                             });
                             return userBooks;
-                        }),
-                        loadTemplate("userBooks")
-                    ]).then(([books, template]) => {
-                        $("#app-container").html(template(books));
-                    });
-                });
-            } else {
-                toastr.error("You need to be logged to add");
-            }
-        }
+                        }), loadTemplate("userBooks")]).then(function (_ref) {
+                            var _ref2 = _slicedToArray(_ref, 2),
+                                books = _ref2[0],
+                                template = _ref2[1];
 
-        load() {
-            loadTemplate("signUp").then(template => {
-                $("#app-container").html(template);
-            })
-        }
-
-        signUp() {
-
-            let dbReference = firebase.database();
-
-            let email = $('#email-input').val();
-
-            let username = $('#username-input').val();
-            if (!validator.isValidUserName(username) || !validator.isValidString(username)) {
-                $('#username-input').val('');
-                location.hash = '#/auth';
-                return;
-            }
-
-
-            let password = $('#password-input').val();
-            if(!validator.isValidPassword(password)){
-                $('#password-input').val('');
-                location.hash = '#/auth';
-                return;
-            }
-
-
-            let USER_AUTH_KEY = "";
-            let newUser = new User(username, password);
-
-
-            Promise.resolve(validator.usernameIsTaken(username)).then(result => {
-                console.log(result);
-                if (!result) {
-                    return firebase.auth().createUserWithEmailAndPassword(email, newUser.passHash).then(function(user) {
-                        user.updateProfile({
-                            displayName: username,
-                            isAnonymous: false,
+                            $("#app-container").html(template(books));
                         });
-
-                        data.createNewUserDataBase(newUser.passHash, username);
-
-                        USER_AUTH_KEY = user.uid;
-
-                        localStorage.setItem("username", username);
-                        localStorage.setItem("auth-key", USER_AUTH_KEY);
-
-                        data.signInUpAct(username);
-
-                        $(".nav.navbar-nav").append('<li><a href="#/user/books/all" id="my-books">My books</a></li>');
-                    }).catch(function(error) {
-
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        notifier.error(errorCode + ' - ' + errorMessage)
-
-                    })
+                    });
                 } else {
-                    toastr.error("Username is taken");
+                    toastr.error("You need to be logged to add");
                 }
-            })
-        }
+            }
+        }, {
+            key: "load",
+            value: function load() {
+                loadTemplate("signUp").then(function (template) {
+                    $("#app-container").html(template);
+                });
+            }
+        }, {
+            key: "signUp",
+            value: function signUp() {
 
-        logout() {
-            firebase.auth().signOut().then(() => {
-                localStorage.clear();
-            }).catch((error) => {
-                notifier.error("Problems with signing out");
-                location.hash = "#/auth";
-                return;
-            });
-            homeController.load().then(() => {
-                $("#auth-btn").removeClass("hidden");
-                $("#logout-btn").addClass("hidden");
-                $("#my-books").remove();
-            });
-        }
+                var dbReference = firebase.database();
 
-        signIn() {
-            let email = $('#email-input').val();
-            let password = $('#password-input').val();
-            let username = $('#username-input').val();
-            const auth = firebase.auth();
-            let USER_AUTH_KEY = "";
+                var email = $('#email-input').val();
 
-            let newUser = new User(username, password);
+                var username = $('#username-input').val();
+                if (!validator.isValidUserName(username) || !validator.isValidString(username)) {
+                    $('#username-input').val('');
+                    location.hash = '#/auth';
+                    return;
+                }
 
+                var password = $('#password-input').val();
+                if (!validator.isValidPassword(password)) {
+                    $('#password-input').val('');
+                    location.hash = '#/auth';
+                    return;
+                }
 
+                var USER_AUTH_KEY = "";
+                var newUser = new User(username, password);
 
-            auth.signInWithEmailAndPassword(email, newUser.passHash).then(function(user) {
+                Promise.resolve(validator.usernameIsTaken(username)).then(function (result) {
+                    console.log(result);
+                    if (!result) {
+                        return firebase.auth().createUserWithEmailAndPassword(email, newUser.passHash).then(function (user) {
+                            user.updateProfile({
+                                displayName: username,
+                                isAnonymous: false
+                            });
 
-                USER_AUTH_KEY = user.uid;
+                            data.createNewUserDataBase(newUser.passHash, username);
 
-                localStorage.setItem("username", user.displayName);
-                localStorage.setItem("auth-key", USER_AUTH_KEY);
+                            USER_AUTH_KEY = user.uid;
 
-                data.signInUpAct(username);
+                            localStorage.setItem("username", username);
+                            localStorage.setItem("auth-key", USER_AUTH_KEY);
 
-                $(".nav.navbar-nav").append('<li><a href="#/user/books/all" id="my-books">My books</a></li>');
-            })
-                .catch(function() {
+                            data.signInUpAct(username);
+
+                            $(".nav.navbar-nav").append('<li><a href="#/user/books/all" id="my-books">My books</a></li>');
+                        }).catch(function (error) {
+
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            notifier.error(errorCode + ' - ' + errorMessage);
+                        });
+                    } else {
+                        toastr.error("Username is taken");
+                    }
+                });
+            }
+        }, {
+            key: "logout",
+            value: function logout() {
+                firebase.auth().signOut().then(function () {
+                    localStorage.clear();
+                }).catch(function (error) {
+                    notifier.error("Problems with signing out");
+                    location.hash = "#/auth";
+                    return;
+                });
+                homeController.load().then(function () {
+                    $("#auth-btn").removeClass("hidden");
+                    $("#logout-btn").addClass("hidden");
+                    $("#my-books").remove();
+                });
+            }
+        }, {
+            key: "signIn",
+            value: function signIn() {
+                var email = $('#email-input').val();
+                var password = $('#password-input').val();
+                var username = $('#username-input').val();
+                var auth = firebase.auth();
+                var USER_AUTH_KEY = "";
+
+                var newUser = new User(username, password);
+
+                auth.signInWithEmailAndPassword(email, newUser.passHash).then(function (user) {
+
+                    USER_AUTH_KEY = user.uid;
+
+                    localStorage.setItem("username", user.displayName);
+                    localStorage.setItem("auth-key", USER_AUTH_KEY);
+
+                    data.signInUpAct(username);
+
+                    $(".nav.navbar-nav").append('<li><a href="#/user/books/all" id="my-books">My books</a></li>');
+                }).catch(function () {
                     notifier.error("Wrong email / password / username");
                     location.hash = "#/auth";
                     return;
-                })
+                });
 
+                auth.onAuthStateChanged(function (user) {
+                    if (user) {
+                        // add functionality
 
-            auth.onAuthStateChanged(function(user) {
-                if (user) {
-                    // add functionality
+                    }
+                });
+            }
+        }]);
 
-                }
-            });
-        }
-    }
+        return UserController;
+    }();
 
-    let usrCntrl = new UserController();
+    var usrCntrl = new UserController();
     return usrCntrl;
-})();
+}();
 
 //contactsController.js
-const contactsController = (() => {
-    class ContactsController {
-        load() {
-            loadTemplate("contacts").then(template => {
-                $("#app-container").html(template);
-            })
-        };
-    }
-    let contactsCtrl = new ContactsController();
+var contactsController = function () {
+    var ContactsController = function () {
+        function ContactsController() {
+            _classCallCheck(this, ContactsController);
+        }
+
+        _createClass(ContactsController, [{
+            key: "load",
+            value: function load() {
+                loadTemplate("contacts").then(function (template) {
+                    $("#app-container").html(template);
+                });
+            }
+        }]);
+
+        return ContactsController;
+    }();
+
+    var contactsCtrl = new ContactsController();
 
     return contactsCtrl;
-})();
+}();
 
 //categoryController.js
-const categoryController = (() => {
-
-    class CategoryController {
-        load(params) {
-            let name = params.name.substr(1);
-            Promise.all([
-                loadTemplate("category"),
-                data.getOneCategory(name),
-            ])
-                .then(([template, category]) => {
-                    $("#app-container").html(template(category));
-                })
+var categoryController = function () {
+    var CategoryController = function () {
+        function CategoryController() {
+            _classCallCheck(this, CategoryController);
         }
 
-        loadAll() {
-            Promise.all([
-                loadTemplate('allCategories'),
-                data.getCategories(),
-            ])
-                .then(([template, categories]) => {
+        _createClass(CategoryController, [{
+            key: "load",
+            value: function load(params) {
+                var name = params.name.substr(1);
+                Promise.all([loadTemplate("category"), data.getOneCategory(name)]).then(function (_ref3) {
+                    var _ref4 = _slicedToArray(_ref3, 2),
+                        template = _ref4[0],
+                        category = _ref4[1];
+
+                    $("#app-container").html(template(category));
+                });
+            }
+        }, {
+            key: "loadAll",
+            value: function loadAll() {
+                Promise.all([loadTemplate('allCategories'), data.getCategories()]).then(function (_ref5) {
+                    var _ref6 = _slicedToArray(_ref5, 2),
+                        template = _ref6[0],
+                        categories = _ref6[1];
+
                     $("#app-container").html(template(categories));
                 });
-        }
-    }
-    let catOne = new CategoryController();
+            }
+        }]);
+
+        return CategoryController;
+    }();
+
+    var catOne = new CategoryController();
     return catOne;
-})();
+}();
 
 //bookController.js
-const bookController = (() => {
+var bookController = function () {
+    var BookController = function () {
+        function BookController() {
+            _classCallCheck(this, BookController);
+        }
 
-    class BookController {
-        load(params) {
-            let id = +params.id.substr(1);
-            Promise.all([
-                loadTemplate("books"),
-                data.getOneBook(id),
-            ])
-                .then(([template, book]) => {
+        _createClass(BookController, [{
+            key: "load",
+            value: function load(params) {
+                var id = +params.id.substr(1);
+                Promise.all([loadTemplate("books"), data.getOneBook(id)]).then(function (_ref7) {
+                    var _ref8 = _slicedToArray(_ref7, 2),
+                        template = _ref8[0],
+                        book = _ref8[1];
 
                     $("#app-container").html(template(book));
                 });
-        }
-    }
-    let bookController = new BookController();
+            }
+        }]);
+
+        return BookController;
+    }();
+
+    var bookController = new BookController();
     return bookController;
-})();
+}();
 
 //aboutController.js
-const aboutController = (() => {
-    class AboutController {
-        load() {
-            loadTemplate("about").then(template => {
-                $("#app-container").html(template);
-            })
-        };
-    }
-    let aboutCtrl = new AboutController();
+var aboutController = function () {
+    var AboutController = function () {
+        function AboutController() {
+            _classCallCheck(this, AboutController);
+        }
+
+        _createClass(AboutController, [{
+            key: "load",
+            value: function load() {
+                loadTemplate("about").then(function (template) {
+                    $("#app-container").html(template);
+                });
+            }
+        }]);
+
+        return AboutController;
+    }();
+
+    var aboutCtrl = new AboutController();
 
     return aboutCtrl;
-})();
+}();
 
 //user.js
 
-class User {
-    constructor(username, password) {
+var User = function () {
+    function User(username, password) {
+        _classCallCheck(this, User);
+
         this.username = username;
         this.passHash = password;
         this.books = [];
     }
 
-    get username() {
-        return this._username;
-    }
+    _createClass(User, [{
+        key: "username",
+        get: function get() {
+            return this._username;
+        },
+        set: function set(username) {
+            // Validations
+            validator.isValidString(username);
+            validator.isValidUserName(username);
 
-    set username(username) {
-        // Validations
-        validator.isValidString(username);
-        validator.isValidUserName(username);
+            this._username = username;
+        }
+    }, {
+        key: "passHash",
+        get: function get() {
+            return this._passHash;
+        },
+        set: function set(password) {
+            // Validations
+            validator.isValidString(password);
+            validator.isValidPassword(password);
 
-        this._username = username;
-    }
+            // Hash
+            this._passHash = CryptoJS.SHA512(password).toString();
+        }
+    }]);
 
-    get passHash() {
-        return this._passHash;
-    }
-
-    set passHash(password) {
-        // Validations
-        validator.isValidString(password);
-        validator.isValidPassword(password);
-
-        // Hash
-        this._passHash = CryptoJS.SHA512(password).toString();
-    }
-}
+    return User;
+}();
 
 //notifier.js
-const notifier = (() => {
 
-    const MIN_NAME_SYMBOLS = 3,
+
+var notifier = function () {
+
+    var MIN_NAME_SYMBOLS = 3,
         MAX_SYMBOLS = 15,
         MIN_PASSWORD_SYMBOLS = 6,
         VALID_SYMBOLS = /^A-Za-z/;
 
-    class Notifier{
-
-        successfullRegistrationMsg(message){
-            toastr.success(message, 'Thank you!', { timeOut: 2000 });
+    var Notifier = function () {
+        function Notifier() {
+            _classCallCheck(this, Notifier);
         }
 
-        success(message){
-            toastr.success(message, {timeOut:1000});
-        }
+        _createClass(Notifier, [{
+            key: "successfullRegistrationMsg",
+            value: function successfullRegistrationMsg(message) {
+                toastr.success(message, 'Thank you!', { timeOut: 2000 });
+            }
+        }, {
+            key: "success",
+            value: function success(message) {
+                toastr.success(message, { timeOut: 1000 });
+            }
+        }, {
+            key: "error",
+            value: function error(message) {
+                toastr.error(message, { timeOut: 2000 });
+            }
+        }, {
+            key: "wrongUserNameMsg",
+            value: function wrongUserNameMsg() {
+                toastr.error("Username must be a string between " + MIN_NAME_SYMBOLS + " and " + MAX_SYMBOLS + " symbols /\n                                 Username can consist only of Capital and small letters");
+            }
+        }, {
+            key: "wrongPasswordMsg",
+            value: function wrongPasswordMsg() {
+                toastr.error("Password must have atleast " + MIN_PASSWORD_SYMBOLS + " symbols");
+            }
+        }, {
+            key: "info",
+            value: function info(message) {
+                toastr.info(message, { timeOut: 2000 });
+            }
+        }]);
 
-        error(message){
-            toastr.error(message, {timeOut: 2000});
-        }
+        return Notifier;
+    }();
 
-        wrongUserNameMsg(){
-            toastr.error(`Username must be a string between ${MIN_NAME_SYMBOLS} and ${MAX_SYMBOLS} symbols /
-                                 Username can consist only of Capital and small letters`);
-        }
-
-        wrongPasswordMsg(){
-            toastr.error(`Password must have atleast ${MIN_PASSWORD_SYMBOLS} symbols`);
-        }
-
-        info(message){
-            toastr.info(message, {timeOut : 2000});
-        }
-    }
-
-    let notifier = new Notifier();
+    var notifier = new Notifier();
     return notifier;
-
-})();
+}();
 
 //templates.js
 function loadTemplate(templateName) {
-    const cacheObj = {};
+    var cacheObj = {};
 
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         if (cacheObj.hasOwnProperty(templateName)) {
 
             resolve(cacheObj[templateName]);
         } else {
-            $.get(`../templates/${templateName}.handlebars`, templateHtml => {
+            $.get("../templates/" + templateName + ".handlebars", function (templateHtml) {
                 var template = Handlebars.compile(templateHtml);
                 cacheObj[name] = template;
                 resolve(template);
             });
-
         }
-    })
+    });
 }
 
 //facebook-share-init.js
 (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
+    var js,
+        fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
+    js = d.createElement(s);js.id = id;
     js.src = "//connect.facebook.net/en_EN/sdk.js#xfbml=1&version=v2.9";
     fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+})(document, 'script', 'facebook-jssdk');
 
 //handlebarsExtensions.js
-Handlebars.registerHelper("counter", function(index) {
+Handlebars.registerHelper("counter", function (index) {
     return index + 1;
 });
-
 
 //main.js
 var root = null;
@@ -623,9 +734,8 @@ router.on({
     "signin": userController.signIn,
     "books/add/:id": userController.addBook,
     "books/remove/:id": userController.removeBook,
-    "user/books/all": userController.getMyBooks,
-})
-    .resolve();
+    "user/books/all": userController.getMyBooks
+}).resolve();
 
 // load the categories before start
 homeController.loadCategoryDropDownMenu();
@@ -637,8 +747,7 @@ homeController.loadCategoryDropDownMenu();
 //     })
 // });
 
-window.onload = () => {
+window.onload = function () {
     userController.logout();
     location.hash = "#/home";
 };
-
